@@ -1,0 +1,15 @@
+funzionalità:
+-crea scheda==routines
+-modifica scheda==routines
+-modifica profilo (impostazioni)==settings
+-visualizza routines==feed
+-visualizza gli esercizi==excercises
+-visualizza statistiche==profilo
+
+------------------------------------
+parti:
+>Feed(home)
+>Routines
+>Exercises
+>Profile
+>Settings
