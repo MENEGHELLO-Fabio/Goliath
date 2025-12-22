@@ -7,8 +7,74 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-        <Label Content="GOLIATH" HorizontalAlignment="Left" Height="29" Margin="22,10,0,0" VerticalAlignment="Top" Width="69"/>
-        <Button x:Name="tempButtonProfiles" Content="entra in profile" HorizontalAlignment="Left" Margin="22,140,0,0" VerticalAlignment="Top" Height="41" Width="138" Click="tempButtonProfiles_Click"/>
+        <Rectangle HorizontalAlignment="Left" Height="414" Stroke="Black" VerticalAlignment="Center" Width="197" Fill="Black"/>
+        <Button x:Name="tempButtonProfiles" Content="PROFILE" HorizontalAlignment="Left" Margin="20,251,0,0" VerticalAlignment="Top" Height="41" Width="161" Click="tempButtonProfiles_Click">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="12"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF8421E0"/>
+                    <GradientStop Color="#FFFF0900" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="tempButtonHome" Content="HOME" HorizontalAlignment="Left" Margin="20,77,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonHome_Click">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="12"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF8421E0"/>
+                    <GradientStop Color="#FFFF0900" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="tempButtonRoutines" Content="ROUTINES" HorizontalAlignment="Left" Margin="20,135,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonRoutines_Click">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="12"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF8421E0"/>
+                    <GradientStop Color="#FFFF0900" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="tempButtonExercises" Content="EXERCISES" HorizontalAlignment="Left" Margin="20,191,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonExercises_Click">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="12"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF8421E0"/>
+                    <GradientStop Color="#FFFF0900" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Button x:Name="tempButtonSettings" Content="SETTINGS" HorizontalAlignment="Left" Margin="20,309,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonSettings_Click">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="12"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FF8421E0"/>
+                    <GradientStop Color="#FFFF0900" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
+        <Label Content="GOLIATH" Margin="0,0,603,357" VerticalAlignment="Bottom" Width="177" FontFamily="Showcard Gothic" FontSize="36" Background="Black" Foreground="White" HorizontalAlignment="Right" Height="57"/>
+        <ScrollViewer Margin="202,0,0,10" Background="#FFDD9999"/>
 
     </Grid>
 </Window>

@@ -26,10 +26,33 @@ namespace Goliath
             InitializeComponent();
         }
 
+        private void tempButtonHome_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow profileWindow = new MainWindow();
+            profileWindow.ShowDialog();
+        }
+
+        private void tempButtonRoutines_Click(object sender, RoutedEventArgs e)
+        {
+            Routines routinesWindow = new Routines();
+            routinesWindow.ShowDialog();
+        }
+
+        private void tempButtonExercises_Click(object sender, RoutedEventArgs e)
+        {
+            Exercises routinesExercises = new Exercises();
+            routinesExercises.ShowDialog();
+        }
+
         private void tempButtonProfiles_Click(object sender, RoutedEventArgs e)
         {
             Profile profileWindow = new Profile();
             profileWindow.ShowDialog();
+        }
+        private void tempButtonSettings_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.ShowDialog();
         }
     }
 }
