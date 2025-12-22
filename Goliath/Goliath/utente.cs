@@ -63,6 +63,11 @@ namespace Goliath
         {
             return allenamenti;
         }
+
+        public void setNumeroAllenamenti(int numeroAllenamenti)
+        {
+            this.numeroAllenamenti = numeroAllenamenti;
+        }
     }
 
 }

@@ -8,6 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Label Content="GOLIATH" HorizontalAlignment="Left" Height="29" Margin="22,10,0,0" VerticalAlignment="Top" Width="69"/>
+        <Button x:Name="tempButtonProfiles" Content="entra in profile" HorizontalAlignment="Left" Margin="22,140,0,0" VerticalAlignment="Top" Height="41" Width="138" Click="tempButtonProfiles_Click"/>
 
     </Grid>
 </Window>

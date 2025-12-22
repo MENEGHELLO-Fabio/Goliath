@@ -8,6 +8,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.IO;
+
+
+
 
 namespace Goliath
 {
@@ -16,9 +20,16 @@ namespace Goliath
     /// </summary>
     public partial class MainWindow : Window
     {
+
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void tempButtonProfiles_Click(object sender, RoutedEventArgs e)
+        {
+            Profile profileWindow = new Profile();
+            profileWindow.ShowDialog();
         }
     }
 }
