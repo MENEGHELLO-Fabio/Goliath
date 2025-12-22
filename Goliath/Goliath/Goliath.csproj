@@ -8,4 +8,14 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="imgs\img-esercizi\ChestPressMachine.mp4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="imgs\img-esercizi\ChestPressMachine.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -13,19 +15,19 @@ using System.Windows.Shapes;
 namespace Goliath
 {
     /// <summary>
-    /// Logica di interazione per Routines.xaml
+    /// Logica di interazione per CreaRoutine.xaml
     /// </summary>
-    public partial class Routines : Window
+    public partial class CreaRoutine : Window
     {
-        public Routines()
+        public CreaRoutine()
         {
             InitializeComponent();
         }
 
-        private void ButtonAggiungiRoutine_Click(object sender, RoutedEventArgs e)
+        private void ButtonAggiungiEsercizio_Click(object sender, RoutedEventArgs e)
         {
-            CreaRoutine creaRoutineWindow = new CreaRoutine();
-            creaRoutineWindow.ShowDialog();
+            Exercises exercisesWindow = new Exercises();
+            exercisesWindow.ShowDialog();
         }
     }
 }

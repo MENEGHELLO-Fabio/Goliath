@@ -7,6 +7,24 @@
         mc:Ignorable="d"
         Title="Routines" Height="450" Width="800">
     <Grid>
-        
+        <Button x:Name="ButtonAggiungiRoutine" Content="AGGIUNGI ROUTINE" HorizontalAlignment="Left" Margin="26,177,0,0" VerticalAlignment="Top" Height="70" Width="201" Click="ButtonAggiungiRoutine_Click"/>
+        <ScrollViewer Margin="264,24,122,21" RenderTransformOrigin="0.5,0.5">
+            <ScrollViewer.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-0.181"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </ScrollViewer.RenderTransform>
+            <ListView Height="386" Width="377" d:ItemsSource="{d:SampleData ItemCount=5}">
+                <ListView.View>
+                    <GridView>
+                        <GridViewColumn/>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </ScrollViewer>
+
     </Grid>
 </Window>

@@ -6,7 +6,17 @@
         xmlns:local="clr-namespace:Goliath"
         mc:Ignorable="d"
         Title="Exercises" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Margin="73,29,73,69">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <ListBox x:Name="VideosListBox" d:ItemsSource="{d:SampleData ItemCount=5}" HorizontalContentAlignment="Stretch" SelectionChanged="VideosListBox_SelectionChanged"/>
+        <MediaElement x:Name="videoPlayer" Grid.Column="1" Margin="57,28,71,142" UnloadedBehavior="Manual"/>
+        <StackPanel x:Name="___Nessun_nome_" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,0,0,10">
+            <Button Content="Play" Click="Play_Click" Margin="4"/>
+            <Button Content="Pause" Click="Pause_Click" Margin="4"/>
+            <Button Content="Stop" Click="Stop_Click" Margin="4"/>
+        </StackPanel>
     </Grid>
 </Window>
