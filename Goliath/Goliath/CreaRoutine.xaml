@@ -26,11 +26,12 @@
         <TextBox x:Name="caricoBox" HorizontalAlignment="Left" Margin="440,175,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="buttonIndietro" Content="indietro" HorizontalAlignment="Left" Height="41" Margin="546,320,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click"/>
         <Label Content="nome esercizio:" HorizontalAlignment="Left" Margin="297,240,0,0" VerticalAlignment="Top"/>
-        <TextBlock x:Name="nomeEsecizioBlock" HorizontalAlignment="Left" Margin="427,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="133" Background="#FFA6A6A6"/>
+        <TextBlock x:Name="nomeEsercizioBlock" HorizontalAlignment="Left" Margin="427,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="21" Width="133" Background="#FFA6A6A6"/>
         <Button x:Name="ButtonAggiungiEsercizio" Content="AGGIUNGI ESERCIZIO" HorizontalAlignment="Left" Height="74" Margin="42,328,0,0" VerticalAlignment="Top" Width="157" Click="ButtonAggiungiEsercizio_Click"/>
         <Label Content="nome routine:" HorizontalAlignment="Left" Margin="474,384,0,0" VerticalAlignment="Top" Width="86"/>
         <TextBox x:Name="nomeRoutineBox" HorizontalAlignment="Left" Margin="587,388,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="buttonCercaEsercizio" Content="CERCA ESERCIZIO" HorizontalAlignment="Left" Margin="64,44,0,0" VerticalAlignment="Top" Height="81" Width="135" Click="buttonCercaEsercizio_Click"/>
+        <Button x:Name="buttonSalvaRoutine" Content="salva routine" HorizontalAlignment="Left" Height="41" Margin="350,320,0,0" VerticalAlignment="Top" Width="90" Click="buttonSalvaRoutine_Click"/>
 
     </Grid>
 </Window>

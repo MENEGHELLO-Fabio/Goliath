@@ -29,5 +29,10 @@ namespace Goliath
             if (ex == null) return;
             esercizi.Remove(ex);
         }
+
+        public override string? ToString()
+        {
+            return NomeRoutine;
+        }
     }
 }

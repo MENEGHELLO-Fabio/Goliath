@@ -1,4 +1,4 @@
-﻿<Window x:Class="Goliath.Routines"
+﻿<Window x:Name="buttonRimuoviRoutine" x:Class="Goliath.Routines"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -26,6 +26,7 @@
             </ListView>
         </ScrollViewer>
         <Button x:Name="buttonHome" Content="Home" HorizontalAlignment="Left" Height="23" Margin="691,387,0,0" VerticalAlignment="Top" Width="87" Click="buttonHome_Click"/>
+        <Button x:Name="buttonRimuoviRoutine1" Content="rimuovi routine" HorizontalAlignment="Left" Height="69" Margin="26,291,0,0" VerticalAlignment="Top" Width="201" Click="buttonRimuoviRoutine1_Click"/>
 
     </Grid>
 </Window>
