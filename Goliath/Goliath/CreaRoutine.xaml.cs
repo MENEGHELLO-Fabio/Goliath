@@ -14,7 +14,7 @@ namespace Goliath
     public partial class CreaRoutine : Window
     {
         private readonly routine currentRoutine;
-
+        private string esercizioSelezionato = "";
         public CreaRoutine()
         {
             InitializeComponent();
@@ -25,9 +25,24 @@ namespace Goliath
         private void ButtonAggiungiEsercizio_Click(object sender, RoutedEventArgs e)
         {
             aggiungiEsercizio exercisesWindow = new aggiungiEsercizio();
-            exercisesWindow.ShowDialog();
+            if (exercisesWindow.ShowDialog()==true)
+            {
+                esercizioSelezionato = exercisesWindow.esercizioSelezionato;
+                string temp = "";
+                for (int i = 0; i < esercizioSelezionato.Length; i++)
+                {
+                    if (esercizioSelezionato[i].Equals('.'))
+                    {
+                        break;
+                    }
+                    temp += esercizioSelezionato[i];
+                }
+                esercizioSelezionato = temp;
+                nomeEsecizioBlock.Text = esercizioSelezionato;
 
-            
+            }
+
+
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

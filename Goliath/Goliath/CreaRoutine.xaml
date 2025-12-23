@@ -26,6 +26,8 @@
         <Label Content="carico:" HorizontalAlignment="Left" Margin="320,171,0,0" VerticalAlignment="Top" Width="59"/>
         <TextBox HorizontalAlignment="Left" Margin="440,175,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Button x:Name="buttonIndietro" Content="indietro" HorizontalAlignment="Left" Height="41" Margin="546,320,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click"/>
+        <Label Content="nome esercizio:" HorizontalAlignment="Left" Margin="297,240,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="nomeEsecizioBlock" HorizontalAlignment="Left" Margin="427,245,0,0" TextWrapping="Wrap" Text="name" VerticalAlignment="Top" Height="21" Width="133"/>
 
     </Grid>
 </Window>
