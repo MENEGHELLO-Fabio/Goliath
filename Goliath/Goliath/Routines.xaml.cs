@@ -25,7 +25,11 @@ namespace Goliath
         private void ButtonAggiungiRoutine_Click(object sender, RoutedEventArgs e)
         {
             CreaRoutine creaRoutineWindow = new CreaRoutine();
-            creaRoutineWindow.ShowDialog();
+            if (creaRoutineWindow.ShowDialog() == true)
+            {
+                routine r = creaRoutineWindow.currentRoutine;
+                routinesList.Items.Add(r);
+            }
         }
 
         private void buttonHome_Click(object sender, RoutedEventArgs e)

@@ -4,8 +4,10 @@ using System.Text;
 
 namespace Goliath
 {
-    class esercizio
+    public class esercizio
     {
+       
+
         public string NomeEsercizio { get; }
         public int Serie { get; }
         public int Ripetizioni { get; }

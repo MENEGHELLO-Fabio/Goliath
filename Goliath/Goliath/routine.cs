@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Goliath
 {
-    class routine
+    public  class routine
     {
         public int NumeroEsercizi => esercizi?.Count ?? 0;
         public string NomeRoutine { get; set; }

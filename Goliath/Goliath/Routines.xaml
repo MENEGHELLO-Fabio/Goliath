@@ -17,7 +17,7 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </ScrollViewer.RenderTransform>
-            <ListView Height="386" Width="377" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView x:Name="routinesList" Height="386" Width="377" d:ItemsSource="{d:SampleData ItemCount=5}">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>

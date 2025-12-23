@@ -49,12 +49,7 @@ namespace Goliath
             VideosListBox.ItemsSource = files;
         }
 
-        private void buttonIndietro_Click(object sender, RoutedEventArgs e)
-        {
-
-            this.Close();
-
-        }
+      
 
         private void VideosListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
