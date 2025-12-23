@@ -6,46 +6,51 @@ namespace Goliath
 {
     class esercizio
     {
-        private String nomeEsercizio;
-        private int serie;
-        private int ripetizioni;
-        private int carico;
-        private int RPE;
+        public string NomeEsercizio { get; }
+        public int Serie { get; }
+        public int Ripetizioni { get; }
+        public int Carico { get; private set; }
+        public int RPE { get; }
+        public string VideoPath { get; set; }
 
-        public esercizio(String nomeEsercizio, int serie, int ripetizioni, int carico, int RPE)
+        public esercizio(string nomeEsercizio, int serie, int ripetizioni, int carico, int RPE)
         {
-            this.nomeEsercizio = nomeEsercizio;
-            this.serie = serie;
-            this.ripetizioni = ripetizioni;
-            this.carico = carico;
+            NomeEsercizio = nomeEsercizio;
+            Serie = serie;
+            Ripetizioni = ripetizioni;
+            Carico = carico;
             this.RPE = RPE;
+            VideoPath = string.Empty;
         }
 
-        public String getNomeEsercizio()
+        public string getNomeEsercizio()
         {
-            return nomeEsercizio;
+            return NomeEsercizio;
         }
 
         public int getSerie()
         {
-            return serie;
+            return Serie;
         }
 
         public int getRipetizioni()
         {
-            return ripetizioni;
+            return Ripetizioni;
         }
 
         public int getCarico()
         {
-            return carico;
+            return Carico;
         }
 
         public void setCarico(int carico)
         {
-            this.carico = carico;
+            this.Carico = carico;
         }
 
-        
+        public override string ToString()
+        {
+            return NomeEsercizio;
+        }
     }
 }

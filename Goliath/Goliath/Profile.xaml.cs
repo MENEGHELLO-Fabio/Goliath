@@ -40,7 +40,6 @@ namespace Goliath
 
             
             string record = $"{textBoxNome.Text.Trim()};{textBoxCognome.Text.Trim()};{textBoxUsername.Text.Trim()};{numeroAllenamenti}";
-
             
             bool hasContent = File.Exists("profiles.csv") && new FileInfo("profiles.csv").Length > 0;
             File.AppendAllText("profiles.csv", (hasContent ? Environment.NewLine : "") + record);   //controllo se il file contiene già un profilo di modo da scrivere nella riga successiva
@@ -108,6 +107,13 @@ namespace Goliath
         {
             File.Delete("profiles.csv");
             Carica();
+        }
+
+        private void buttonHome_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow main = new MainWindow();
+            this.Close();
+            main.ShowDialog();
         }
     }
 }

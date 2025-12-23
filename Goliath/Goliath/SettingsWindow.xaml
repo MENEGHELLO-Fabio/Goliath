@@ -9,6 +9,7 @@
     <Grid>
         <TextBox HorizontalAlignment="Left" Height="21" Margin="39,34,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="121"/>
         <TextBox HorizontalAlignment="Left" Height="20" Margin="39,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="121"/>
+        <Button x:Name="buttonHome" Content="Home" HorizontalAlignment="Left" Height="37" Margin="631,290,0,0" VerticalAlignment="Top" Width="107" Click="buttonHome_Click"/>
 
     </Grid>
 </Window>

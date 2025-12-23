@@ -18,6 +18,7 @@
         <Label x:Name="LabelNome" Content="Nome" HorizontalAlignment="Left" Height="41" Margin="25,58,0,0" VerticalAlignment="Top" Width="192"/>
         <Label x:Name="labelNumeroAllenamenti" Content="Numero Allenamenti" HorizontalAlignment="Left" Height="34" Margin="336,78,0,0" VerticalAlignment="Top" Width="153"/>
         <Button x:Name="buttonFormattaProfili" Content="Formatta profili" HorizontalAlignment="Left" Height="41" Margin="489,317,0,0" VerticalAlignment="Top" Width="113" Click="buttonFormattaProfili_Click"/>
+        <Button x:Name="buttonHome" Content="Home" HorizontalAlignment="Left" Height="51" Margin="688,373,0,0" VerticalAlignment="Top" Width="102" Click="buttonHome_Click"/>
 
 
     </Grid>

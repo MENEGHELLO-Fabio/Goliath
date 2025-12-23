@@ -8,7 +8,7 @@
         Title="CreaRoutine" Height="450" Width="800">
     <Grid>
         <Button x:Name="ButtonAggiungiEsercizio" Content="AGGIUNGI ESERCIZIO" HorizontalAlignment="Left" Margin="45,31,0,0" VerticalAlignment="Top" Height="75" Width="154" Click="ButtonAggiungiEsercizio_Click"/>
-        <ListBox d:ItemsSource="{d:SampleData ItemCount=5}" Margin="45,167,594,133" RenderTransformOrigin="0.5,0.5">
+        <ListBox  Margin="45,167,594,133" RenderTransformOrigin="0.5,0.5" d:ItemsSource="{d:SampleData ItemCount=5}">
             <ListBox.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -20,11 +20,12 @@
         </ListBox>
         <Label Content="ESERICIZI PRESENTI:" HorizontalAlignment="Left" Margin="64,130,0,0" VerticalAlignment="Top"/>
         <Label Content="numero serie:" HorizontalAlignment="Left" Margin="299,56,0,0" VerticalAlignment="Top" Width="101"/>
-        <TextBox HorizontalAlignment="Left" Margin="440,60,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="440,60,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label Content="numero ripetizioni:" HorizontalAlignment="Left" Margin="285,112,0,0" VerticalAlignment="Top" Width="115"/>
-        <TextBox HorizontalAlignment="Left" Margin="440,116,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="440,116,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <Label Content="carico:" HorizontalAlignment="Left" Margin="320,171,0,0" VerticalAlignment="Top" Width="59"/>
-        <TextBox HorizontalAlignment="Left" Margin="440,175,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Left" Margin="440,175,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <Button x:Name="buttonIndietro" Content="indietro" HorizontalAlignment="Left" Height="41" Margin="546,320,0,0" VerticalAlignment="Top" Width="161" Click="Button_Click"/>
 
     </Grid>
 </Window>
