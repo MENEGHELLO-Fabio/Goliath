@@ -22,10 +22,12 @@ namespace Goliath
     {
         private readonly List<routine> loadedRoutines = new();
         routine selectedRoutine = null;
+        private readonly List<videoItem> items = new();
         public AllenamentoFinestra()
         {
             InitializeComponent();
             grid2.Visibility = Visibility.Visible;
+            grid3.Visibility = Visibility.Collapsed;
             caricaRoutines();
 
         }
@@ -123,11 +125,30 @@ namespace Goliath
             selectedRoutine = (routine)routinesList.SelectedItem;
             
             grid2.Visibility = Visibility.Collapsed;
+            grid3.Visibility = Visibility.Visible;
+
+            visualizzaAllenamento();
         }
 
         private void visualizzaAllenamento()
         {
-            panel.Add
+            panel.Children.Clear();
+
+
+          
+            foreach (var esercizio in selectedRoutine.GetEsercizi())
+            {
+                var card = new EsercizioCard();
+                card.nomeEsercizioBlock.Text = esercizio.NomeEsercizio; 
+                card.serieBlock.Text = esercizio.Serie.ToString(); 
+                card.repBlock.Text =esercizio.Ripetizioni.ToString();
+                card.videoBox.Source = new Uri(esercizio.VideoPath, UriKind.RelativeOrAbsolute);
+
+                panel.Children.Add(card);
+            }
         }
+
+      
+
     }
 }
