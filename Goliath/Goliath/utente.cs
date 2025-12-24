@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Goliath
 {
-    class utente
+    public class utente
     {
         private String nome;
         private String cognome;

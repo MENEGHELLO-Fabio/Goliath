@@ -58,5 +58,12 @@ namespace Goliath
             
 
         }
+
+        private void tempButtonAllenamento_Click(object sender, RoutedEventArgs e)
+        {
+            AllenamentoFinestra allenamentoWindow = new AllenamentoFinestra();
+            this.Close();
+            allenamentoWindow.ShowDialog();
+        }
     }
 }
