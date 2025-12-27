@@ -9,11 +9,119 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="imgs\img-esercizi\backExtension.mp4" />
+    <None Remove="imgs\img-esercizi\BehindTheBackCurl.mp4" />
+    <None Remove="imgs\img-esercizi\BenchDip.mp4" />
+    <None Remove="imgs\img-esercizi\BenchPressBarbell.mp4" />
+    <None Remove="imgs\img-esercizi\BenchPressDumbell.mp4" />
+    <None Remove="imgs\img-esercizi\BenchPressSmithMachine.mp4" />
+    <None Remove="imgs\img-esercizi\BentOverRowBarbell.mp4" />
+    <None Remove="imgs\img-esercizi\BentOverRowDumbbell.mp4" />
+    <None Remove="imgs\img-esercizi\BicepCurlBarbell.mp4" />
+    <None Remove="imgs\img-esercizi\BicepCurlDumbbell.mp4" />
+    <None Remove="imgs\img-esercizi\BicycleCrunch.mp4" />
+    <None Remove="imgs\img-esercizi\BoxJump.mp4" />
+    <None Remove="imgs\img-esercizi\BulgariaSplitSquat.mp4" />
+    <None Remove="imgs\img-esercizi\Burpee.mp4" />
+    <None Remove="imgs\img-esercizi\ButterflyPecDeck.mp4" />
+    <None Remove="imgs\img-esercizi\CableCrunch.mp4" />
+    <None Remove="imgs\img-esercizi\CableFlyCrossovers.mp4" />
+    <None Remove="imgs\img-esercizi\CalfExtensionMachine.mp4" />
+    <None Remove="imgs\img-esercizi\CalfPressMachine.mp4" />
+    <None Remove="imgs\img-esercizi\ChestDip.mp4" />
+    <None Remove="imgs\img-esercizi\ChestDipAssisted.mp4" />
+    <None Remove="imgs\img-esercizi\ChestDipWeighted.mp4" />
+    <None Remove="imgs\img-esercizi\ChestFlyDumbbell.mp4" />
+    <None Remove="imgs\img-esercizi\ChestFlyMachine.mp4" />
     <None Remove="imgs\img-esercizi\ChestPressMachine.mp4" />
+    <None Remove="imgs\img-esercizi\ChestSupportedInclineRowDumbbell.mp4" />
+    <None Remove="imgs\img-esercizi\ChestSupportedYRaiseDumbbell.mp4" />
+    <None Remove="imgs\img-esercizi\ChinUp.mp4" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="imgs\img-esercizi\backExtension.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\BehindTheBackCurl.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\BenchDip.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\BenchPressBarbell.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\BenchPressDumbell.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\BenchPressSmithMachine.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\BentOverRowBarbell.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\BentOverRowDumbbell.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\BicepCurlBarbell.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\BicepCurlDumbbell.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\BicycleCrunch.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\BoxJump.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\BulgariaSplitSquat.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\Burpee.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\ButterflyPecDeck.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\CableCrunch.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\CableFlyCrossovers.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\CalfExtensionMachine.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\CalfPressMachine.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\ChestDip.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\ChestDipAssisted.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\ChestDipWeighted.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\ChestFlyDumbbell.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\ChestFlyMachine.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="imgs\img-esercizi\ChestPressMachine.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\ChestSupportedInclineRowDumbbell.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\ChestSupportedYRaiseDumbbell.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="imgs\img-esercizi\ChinUp.mp4">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -22,7 +22,7 @@ namespace Goliath
     {
         private readonly List<routine> loadedRoutines = new();
         routine selectedRoutine = null;
-        private readonly List<videoItem> items = new();
+      
         public AllenamentoFinestra()
         {
             InitializeComponent();
