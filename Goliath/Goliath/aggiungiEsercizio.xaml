@@ -6,7 +6,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Goliath"
         mc:Ignorable="d"
-        Title="aggiungiEsercizio" Height="450" Width="800">
+        Title="aggiungiEsercizio" Height="450" Width="800" Background="#FF393939">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -29,13 +29,18 @@
                       Margin="75,34,51,97"
                       UnloadedBehavior="Manual" Grid.Row="1"/>
 
-        <Button x:Name="buttonReturn" Content="RETURN"
-                Grid.Column="1"
-                Grid.Row="1"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Margin="0,308,32,0"
-                Width="130"
-                Height="54" Click="buttonReturn_Click"/>
+        <Button x:Name="buttonReturn" Margin="384,310,50,30" Grid.Row="1" Grid.Column="1" Content="Salva" FontFamily="Verdana" Click="buttonReturn_Click_1">
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="12"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FEA36AD7"/>
+                    <GradientStop Color="#FF9A9A9A" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
+        </Button>
     </Grid>
 </Window>

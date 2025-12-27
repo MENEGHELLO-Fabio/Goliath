@@ -55,8 +55,7 @@ namespace Goliath
             esercizioSelezionato= ex.NomeEsercizio;
 
         }
-
-        private void buttonReturn_Click(object sender, RoutedEventArgs e)
+        private void buttonReturn_Click_1(object sender, RoutedEventArgs e)
         {
             this.DialogResult = true;//serve per capire se finestra si è chiusa correttamente
             this.Close();

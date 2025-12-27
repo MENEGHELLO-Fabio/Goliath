@@ -121,7 +121,7 @@ namespace Goliath
 
         private void buttonSalvaRoutine_Click(object sender, RoutedEventArgs e)
         {
-            if (nomeRoutineBox != null)
+            if (nomeRoutineBox.Text == null)
             {
                 MessageBox.Show("Compila tutti i campi prima di salvare la routine");
                 return;

@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         Title="AllenamentoFinestra" Height="450" Width="800">
 
-    <Grid>
+    <Grid Background="#FF393939">
         <Grid x:Name="grid2" Margin="10,10,473,10" Background="#FFC3C3C3">
             <Label Content="SELEZIONA LA ROUTINE CON CUI ALLENARTI" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Height="27" Width="271"/>
             <ListView x:Name="routinesList" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="23,56,46,101">
@@ -25,6 +25,18 @@
                 <StackPanel x:Name="panel" Width="630"/>
             </ScrollViewer>
         </Grid>
-        <Button x:Name="buttonIndietro" Content="indietro" HorizontalAlignment="Left" Height="56" Margin="659,351,0,0" VerticalAlignment="Top" Width="111" Click="buttonIndietro_Click"/>
+        <Button x:Name="buttonIndietro" Content="indietro" HorizontalAlignment="Left" Height="56" Margin="659,351,0,0" VerticalAlignment="Top" Width="111" Click="buttonIndietro_Click">
+        <Button.Resources>
+            <Style TargetType="{x:Type Border}">
+                <Setter Property="CornerRadius" Value="12"/>
+            </Style>
+        </Button.Resources>
+        <Button.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FEA36AD7"/>
+                <GradientStop Color="#FF9A9A9A" Offset="1"/>
+            </LinearGradientBrush>
+        </Button.Background>
+        </Button>
     </Grid>
 </Window>

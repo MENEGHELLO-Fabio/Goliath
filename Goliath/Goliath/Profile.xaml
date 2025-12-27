@@ -7,7 +7,7 @@
         xmlns:local="clr-namespace:Goliath"
         mc:Ignorable="d"
         Title="Profile" Height="450" Width="800">
-    <Grid>
+    <Grid Background="#FF393939">
         <TextBox x:Name="textBoxNome" TextWrapping="Wrap" Text="" Margin="25,99,583,281"/>
         <TextBox x:Name="textBoxCognome" HorizontalAlignment="Left" Height="55" Margin="25,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="192"/>
         <TextBox x:Name="textBoxUsername" HorizontalAlignment="Left" Height="54" Margin="25,284,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="192"/>
