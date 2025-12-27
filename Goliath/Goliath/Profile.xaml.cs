@@ -62,6 +62,9 @@ namespace Goliath
             var info = new FileInfo("profiles.csv");
             if (info.Length == 0)
             {
+                textBoxNome.Text = "";
+                textBoxCognome.Text = "";
+                textBoxUsername.Text = "";
                 return;
             }
 
@@ -106,6 +109,7 @@ namespace Goliath
         private void buttonFormattaProfili_Click(object sender, RoutedEventArgs e)
         {
             File.Delete("profiles.csv");
+            MessageBox.Show("Tutti i profili sono stati cancellati.");
             Carica();
         }
 

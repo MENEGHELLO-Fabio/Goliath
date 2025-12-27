@@ -123,7 +123,8 @@ namespace Goliath
         {
             if (nomeRoutineBox != null)
             {
-                currentRoutine.NomeRoutine = nomeRoutineBox.Text;
+                MessageBox.Show("Compila tutti i campi prima di salvare la routine");
+                return;
             }
             this.salvaRoutine();
             this.DialogResult = true;//serve per capire se finestra si è chiusa correttamente
