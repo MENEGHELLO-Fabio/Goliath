@@ -21,13 +21,17 @@ namespace Goliath
     public partial class AllenamentoFinestra : Window
     {
         private readonly List<routine> loadedRoutines = new();
-        routine selectedRoutine = null;
+        private routine selectedRoutine = null;
+        public routine allenamentoDaTornare;
 
         public AllenamentoFinestra()
         {
             InitializeComponent();
+            selectedRoutine = null;
+
             grid2.Visibility = Visibility.Visible;
             grid3.Visibility = Visibility.Collapsed;
+
             caricaRoutines();
 
         }
@@ -153,11 +157,39 @@ namespace Goliath
 
         private void buttonIndietro_Click(object sender, RoutedEventArgs e)
         {
+            //salva allenamento su csv
 
+            const string filePath = "allenamenti.csv";
+
+            if (!File.Exists(filePath))
+            {
+                File.WriteAllText(filePath, "");
+            }
+
+            using (StreamWriter writer = new StreamWriter(filePath, append: true))
+            {
+                writer.WriteLine($"ALLENAMENTO;{selectedRoutine.NomeRoutine};{DateTime.Now:yyyy-MM-dd}");
+                foreach (var esercizio in selectedRoutine.GetEsercizi())
+                {
+                    writer.WriteLine(
+                        $"EXE;{esercizio.NomeEsercizio};{esercizio.Serie};{esercizio.Ripetizioni};{esercizio.Carico};{esercizio.RPE};{esercizio.VideoPath}"
+                    );
+                }
+            }
+
+            //ritorno a main window
 
             MainWindow main = new MainWindow();
             main.Show();
+            if (selectedRoutine != null)
+            {
+               allenamentoDaTornare = selectedRoutine;
+                this.DialogResult = true;
+            }
+            
             this.Close();
+
+
         }
 
     }

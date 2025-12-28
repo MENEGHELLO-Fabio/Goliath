@@ -64,7 +64,9 @@
         </Button>
         <Label x:Name="LabelGoliath" Content="GOLIATH" Margin="0,0,603,357" VerticalAlignment="Bottom" Width="177" FontFamily="Showcard Gothic" FontSize="36" Background="#FF393939" Foreground="#FF858585" HorizontalAlignment="Right" Height="57" ClipToBounds="True">
         </Label>
-        <ScrollViewer Margin="239,0,0,0" Background="#FF312741" BorderBrush="White" Foreground="Black"/>
+        <ScrollViewer x:Name="barraScorrimento" Margin="239,0,0,0" Background="#FF312741" BorderBrush="White" Foreground="Black">
+            <StackPanel x:Name="panel" Width="794"/>
+        </ScrollViewer>
         <Button x:Name="tempButtonAllenamento" FontFamily="Verdana" Content="AVVIA ALLENAMENTO" HorizontalAlignment="Left" Margin="20,98,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonAllenamento_Click">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">

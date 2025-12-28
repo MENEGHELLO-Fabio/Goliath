@@ -9,6 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.IO;
+using System.Configuration.Internal;
 
 
 
@@ -20,10 +21,11 @@ namespace Goliath
     /// </summary>
     public partial class MainWindow : Window
     {
-
+       
         public MainWindow()
         {
             InitializeComponent();
+            caricaAllenamenti();
         }
 
         private void tempButtonRoutines_Click(object sender, RoutedEventArgs e)
@@ -62,8 +64,80 @@ namespace Goliath
         private void tempButtonAllenamento_Click(object sender, RoutedEventArgs e)
         {
             AllenamentoFinestra allenamentoWindow = new AllenamentoFinestra();
+
             this.Close();
             allenamentoWindow.ShowDialog();
+            
+        }
+
+        private void caricaAllenamenti()
+        {
+            
+            //leggo da csv
+            const string filePath = "allenamenti.csv";
+            if (!File.Exists(filePath))
+            {
+                // file inesistente 
+                return;
+            }
+
+            panel.Children.Clear();
+
+            routine routineCorrente = null; 
+            List<routine> allenamentiFatti = new List<routine>();
+
+            var righe = File.ReadAllLines(filePath);
+
+            foreach (var riga in righe)
+            {
+                if (string.IsNullOrWhiteSpace(riga))
+                    continue; // salta righe vuote
+
+
+                var parti = riga.Split(';');
+
+
+                if (parti[0] == "ALLENAMENTO")
+                {
+
+                    // Se c'era già una routine in costruzione, la salvo
+                    if (routineCorrente != null)
+                    {
+                        allenamentiFatti.Add(routineCorrente);
+                    }
+
+                    string nomeRoutine = parti[1]; 
+                    routineCorrente = new routine();
+                    routineCorrente.NomeRoutine = nomeRoutine;
+                }
+                else if (parti[0] == "EXE")
+                {
+                    string nome = parti[1];
+                    int serie = int.Parse(parti[2]);
+                    int ripetizioni = int.Parse(parti[3]); 
+                    int carico = int.Parse(parti[4]);
+                    int rpe = int.Parse(parti[5]);
+                    string videoPath = parti[6];
+                    esercizio ex = new esercizio(nome, serie, ripetizioni, carico, rpe);
+                    ex.VideoPath = videoPath;
+                    routineCorrente.AddEsercizio(ex);
+                }
+
+
+
+            }
+
+            if (routineCorrente != null) 
+                allenamentiFatti.Add(routineCorrente);
+
+
+            //carico allenamenti fatti
+            foreach (var routineI in allenamentiFatti)
+            {
+                var card = new cardAllenamento(routineI);
+
+                panel.Children.Add(card);
+            }
         }
     }
 }
