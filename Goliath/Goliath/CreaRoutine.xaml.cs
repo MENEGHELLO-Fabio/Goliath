@@ -18,7 +18,9 @@ namespace Goliath
         //private readonly routine currentRoutine;
         public routine currentRoutine { get; }
 
-        private string esercizioSelezionato = "";
+        public esercizio esercizioSelezionato=null;
+
+        private string videoPathSelezionato = "";
 
         public CreaRoutine()
         {
@@ -41,6 +43,8 @@ namespace Goliath
                 MessageBox.Show("Compila tutti i campi prima di aggiungere l'esercizio.", "Errore", MessageBoxButton.OK, MessageBoxImage.Error); return; 
             }
             esercizio nuovoEsercizio = new esercizio(nomeEsercizioBlock.Text, int.Parse(serieBox.Text), int.Parse(ripetizioniBox.Text), int.Parse(caricoBox.Text), 0);
+            nuovoEsercizio.VideoPath = videoPathSelezionato;
+            
             nomeEsercizioBlock.Text="";
             serieBox.Text = "";
             ripetizioniBox.Text = "";
@@ -54,20 +58,14 @@ namespace Goliath
             aggiungiEsercizio exercisesWindow = new aggiungiEsercizio();
             if (exercisesWindow.ShowDialog() == true)
             {
-                esercizioSelezionato = exercisesWindow.esercizioSelezionato;
-                string temp = "";
-                for (int i = 0; i < esercizioSelezionato.Length; i++)
-                {
-                    if (esercizioSelezionato[i].Equals('.'))
-                    {
-                        break;
-                    }
-                    temp += esercizioSelezionato[i];
-                }
-                esercizioSelezionato = temp;
-                nomeEsercizioBlock.Text = esercizioSelezionato;
+                esercizio ex = exercisesWindow.esercizioSelezionato;
 
+                nomeEsercizioBlock.Text = ex.NomeEsercizio;
+
+                // Salvo il VideoPath in un campo nascosto
+                videoPathSelezionato = ex.VideoPath;
             }
+
         }
 
         public void salvaRoutine()

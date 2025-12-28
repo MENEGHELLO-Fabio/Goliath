@@ -22,7 +22,7 @@ namespace Goliath
     {
         private readonly List<routine> loadedRoutines = new();
         routine selectedRoutine = null;
-      
+
         public AllenamentoFinestra()
         {
             InitializeComponent();
@@ -117,13 +117,13 @@ namespace Goliath
 
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
-            if (routinesList.SelectedItem==null)
+            if (routinesList.SelectedItem == null)
             {
                 return;
             }
 
             selectedRoutine = (routine)routinesList.SelectedItem;
-            
+
             grid2.Visibility = Visibility.Collapsed;
             grid3.Visibility = Visibility.Visible;
 
@@ -135,14 +135,17 @@ namespace Goliath
             panel.Children.Clear();
 
 
-          
+
             foreach (var esercizio in selectedRoutine.GetEsercizi())
             {
                 var card = new EsercizioCard();
-                card.nomeEsercizioBlock.Text = esercizio.NomeEsercizio; 
-                card.serieBlock.Text = esercizio.Serie.ToString(); 
-                card.repBlock.Text =esercizio.Ripetizioni.ToString();
-                card.videoBox.Source = new Uri(esercizio.VideoPath, UriKind.RelativeOrAbsolute);
+                card.nomeEsercizioBlock.Text = esercizio.NomeEsercizio;
+                card.serieBlock.Text = esercizio.Serie.ToString();
+                card.repBlock.Text = esercizio.Ripetizioni.ToString();
+                //card.videoBox.Source = new Uri(esercizio.VideoPath, UriKind.RelativeOrAbsolute);
+                string fullPath = System.IO.Path.GetFullPath(esercizio.VideoPath);
+                card.videoBox.Source = new Uri(fullPath, UriKind.Absolute);
+                card.videoBox.Play();
 
                 panel.Children.Add(card);
             }
@@ -151,10 +154,12 @@ namespace Goliath
         private void buttonIndietro_Click(object sender, RoutedEventArgs e)
         {
 
- 
+
             MainWindow main = new MainWindow();
             main.Show();
             this.Close();
         }
+
     }
+    
 }

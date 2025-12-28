@@ -16,7 +16,7 @@ namespace Goliath
         videoCollection collezioneVideo= new videoCollection();
         eserciziCollection collezioneEsercizi;
 
-        public string esercizioSelezionato = "";
+        public esercizio esercizioSelezionato = null;
 
         public aggiungiEsercizio()
         {
@@ -52,7 +52,7 @@ namespace Goliath
             videoPlayer.Source = new Uri(fullPath);
             videoPlayer.Play();
 
-            esercizioSelezionato= ex.NomeEsercizio;
+            esercizioSelezionato= ex;
 
         }
         private void buttonReturn_Click_1(object sender, RoutedEventArgs e)
