@@ -119,16 +119,21 @@ namespace Goliath
 
         private void buttonSalvaRoutine_Click(object sender, RoutedEventArgs e)
         {
-            if (nomeRoutineBox.Text == null)
+            if (string.IsNullOrWhiteSpace(nomeRoutineBox.Text))
             {
                 MessageBox.Show("Compila tutti i campi prima di salvare la routine");
                 return;
             }
+
+            // Imposto il nome della routine
+            currentRoutine.NomeRoutine = nomeRoutineBox.Text.Trim();
+
             this.salvaRoutine();
-            this.DialogResult = true;//serve per capire se finestra si è chiusa correttamente
+            this.DialogResult = true;
             this.Close();
         }
 
-        
+
+
     }
 }

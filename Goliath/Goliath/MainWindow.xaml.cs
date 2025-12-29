@@ -109,6 +109,8 @@ namespace Goliath
                     string nomeRoutine = parti[1]; 
                     routineCorrente = new routine();
                     routineCorrente.NomeRoutine = nomeRoutine;
+
+                   
                 }
                 else if (parti[0] == "EXE")
                 {
@@ -134,6 +136,16 @@ namespace Goliath
             //carico allenamenti fatti
             foreach (var routineI in allenamentiFatti)
             {
+
+                // Titolo
+                var cardTitolo = new cardDescrizioneAllenamento();
+                cardTitolo.impostaTitolo(routineI.NomeRoutine);
+                cardTitolo.impostaData("Data non disponibile");
+
+                panel.Children.Add(cardTitolo);
+
+                //  esercizi
+
                 var card = new cardAllenamento(routineI);
 
                 panel.Children.Add(card);
