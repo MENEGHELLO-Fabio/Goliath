@@ -171,7 +171,7 @@ namespace Goliath
 
                 using (StreamWriter writer = new StreamWriter(filePath, append: true))
                 {
-                    writer.WriteLine($"ALLENAMENTO;{selectedRoutine.NomeRoutine};{DateTime.Now:yyyy-MM-dd}");
+                    writer.WriteLine($"ALLENAMENTO;{selectedRoutine.NomeRoutine};{DateTime.Now:dd-MM-yyyy}");
                     foreach (var esercizio in selectedRoutine.GetEsercizi())
                     {
                         writer.WriteLine(
