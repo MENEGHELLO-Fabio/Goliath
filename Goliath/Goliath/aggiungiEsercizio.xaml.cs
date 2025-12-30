@@ -60,5 +60,11 @@ namespace Goliath
             this.DialogResult = true;//serve per capire se finestra si è chiusa correttamente
             this.Close();
         }
+
+        private void videoPlayer_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            videoPlayer.Position = TimeSpan.Zero; 
+            videoPlayer.Play();
+        }
     }
 }

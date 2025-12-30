@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="#FF393939">
         <Grid x:Name="grid3" Background="#FFC8C8C8" Margin="0,0,10,0">
-            <ScrollViewer x:Name="finestraScrolla" Margin="0,0,10,0">
+            <ScrollViewer x:Name="finestraScrolla" Margin="0,0,10,0" Background="White">
                 <StackPanel x:Name="panel" Width="794" Margin="0,0,10,0"/>
             </ScrollViewer>
         </Grid>

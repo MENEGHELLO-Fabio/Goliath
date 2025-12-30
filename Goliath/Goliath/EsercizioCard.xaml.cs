@@ -24,5 +24,11 @@ namespace Goliath
         {
             InitializeComponent();
         }
+
+        private void videoBox_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            videoBox.Position = TimeSpan.Zero;
+            videoBox.Play();
+        }
     }
 }

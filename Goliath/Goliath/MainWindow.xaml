@@ -9,76 +9,45 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Rectangle HorizontalAlignment="Left" Height="434" Stroke="Black" VerticalAlignment="Center" Width="239" Fill="#FF393939"/>
-        <Button x:Name="tempButtonProfiles" Content="PROFILE" HorizontalAlignment="Left" Margin="18,275,0,0" VerticalAlignment="Top" Height="41" Width="161" Click="tempButtonProfiles_Click">
+        <Button x:Name="tempButtonProfiles" Content="PROFILE" HorizontalAlignment="Left" Margin="18,275,0,0" VerticalAlignment="Top" Height="41" Width="161" Click="tempButtonProfiles_Click" Background="#FFC6C6C6">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="12"/>
                 </Style>
             </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FEA36AD7"/>
-                    <GradientStop Color="#FF9A9A9A" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
         </Button>
-        <Button x:Name="tempButtonRoutines" Content="ROUTINES" HorizontalAlignment="Left" Margin="20,158,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonRoutines_Click">
+        <Button x:Name="tempButtonRoutines" Content="ROUTINES" HorizontalAlignment="Left" Margin="20,158,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonRoutines_Click" Background="#FFC2C2C2">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="12"/>
                 </Style>
             </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF8421E0"/>
-                    <GradientStop Color="#FF727272" Offset="1"/>
-                    <GradientStop Color="#FEA36AD7" Offset="0"/>
-                </LinearGradientBrush>
-            </Button.Background>
         </Button>
-        <Button x:Name="tempButtonExercises" Content="EXERCISES" HorizontalAlignment="Left" Margin="20,217,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonExercises_Click">
+        <Button x:Name="tempButtonExercises" Content="EXERCISES" HorizontalAlignment="Left" Margin="20,217,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonExercises_Click" Background="#FFC3C3C3">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="12"/>
                 </Style>
             </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FEA36AD7"/>
-                    <GradientStop Color="#FF9A9A9A" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
         </Button>
-        <Button x:Name="tempButtonSettings" Content="SETTINGS" HorizontalAlignment="Left" Margin="20,334,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonSettings_Click">
+        <Button x:Name="tempButtonSettings" Content="SETTINGS" HorizontalAlignment="Left" Margin="20,334,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonSettings_Click" Background="#FFB7B7B7">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="12"/>
                 </Style>
             </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FEA36AD7"/>
-                    <GradientStop Color="#FF9A9A9A" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
         </Button>
-        <Label x:Name="LabelGoliath" Content="GOLIATH" Margin="0,0,603,357" VerticalAlignment="Bottom" Width="177" FontFamily="Showcard Gothic" FontSize="36" Background="#FF393939" Foreground="#FF858585" HorizontalAlignment="Right" Height="57" ClipToBounds="True">
+        <Label x:Name="LabelGoliath" Content="GOLIATH" Margin="0,0,592,341" VerticalAlignment="Bottom" Width="177" FontFamily="Showcard Gothic" FontSize="36" Background="#FF393939" Foreground="#FF858585" HorizontalAlignment="Right" Height="57" ClipToBounds="True">
         </Label>
-        <ScrollViewer x:Name="barraScorrimento" Margin="239,0,0,0" Background="#FF312741" BorderBrush="White" Foreground="Black">
-            <StackPanel x:Name="panel" Width="794"/>
+        <ScrollViewer x:Name="barraScorrimento" Margin="239,0,0,0" Background="White" BorderBrush="White" Foreground="Black">
+            <StackPanel x:Name="panel" Width="561" Background="#FFE3E3E3"/>
         </ScrollViewer>
-        <Button x:Name="tempButtonAllenamento" FontFamily="Verdana" Content="AVVIA ALLENAMENTO" HorizontalAlignment="Left" Margin="20,98,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonAllenamento_Click">
+        <Button x:Name="tempButtonAllenamento" FontFamily="Arial Nova" Content="AVVIA ALLENAMENTO" HorizontalAlignment="Left" Margin="20,98,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonAllenamento_Click" Background="Silver">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="12"/>
                 </Style>
             </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FEA36AD7"/>
-                    <GradientStop Color="#FF9A9A9A" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
         </Button>
 
     </Grid>

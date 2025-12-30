@@ -9,6 +9,7 @@ namespace Goliath
         public int NumeroEsercizi => esercizi?.Count ?? 0;
         public string NomeRoutine { get; set; }
         private readonly List<esercizio> esercizi;
+        public string DataAllenamento { get; set; }
 
         public routine()
         {

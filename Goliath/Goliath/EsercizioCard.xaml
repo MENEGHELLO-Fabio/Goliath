@@ -8,13 +8,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="10" Padding="10" Background="#FF393939">
-            <StackPanel Orientation="Vertical" Background="#FF4B4B4B">
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="10" Padding="10" Background="White">
+            <StackPanel Orientation="Vertical" Background="White">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                     <TextBlock Text="Nome esercizio: " FontWeight="Bold"/>
                     <TextBlock x:Name="nomeEsercizioBlock" Text="H"/>
                 </StackPanel>
-                <MediaElement x:Name="videoBox" Height="150" LoadedBehavior="Manual" UnloadedBehavior="Stop"/>
+                <MediaElement x:Name="videoBox" Height="150" LoadedBehavior="Manual" MediaEnded="videoBox_MediaEnded" UnloadedBehavior="Stop"/>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                     <TextBlock Text="Serie: " FontWeight="Bold"/>
                     <TextBlock x:Name="serieBlock"/>

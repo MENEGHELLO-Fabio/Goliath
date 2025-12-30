@@ -106,11 +106,13 @@ namespace Goliath
                         allenamentiFatti.Add(routineCorrente);
                     }
 
-                    string nomeRoutine = parti[1]; 
+                    string nomeRoutine = parti[1];
+                    string data = parti[2];
+
                     routineCorrente = new routine();
                     routineCorrente.NomeRoutine = nomeRoutine;
+                    routineCorrente.DataAllenamento = data;
 
-                   
                 }
                 else if (parti[0] == "EXE")
                 {
@@ -140,7 +142,7 @@ namespace Goliath
                 // Titolo
                 var cardTitolo = new cardDescrizioneAllenamento();
                 cardTitolo.impostaTitolo(routineI.NomeRoutine);
-                cardTitolo.impostaData("Data non disponibile");
+                cardTitolo.impostaData(routineI.DataAllenamento);
 
                 panel.Children.Add(cardTitolo);
 

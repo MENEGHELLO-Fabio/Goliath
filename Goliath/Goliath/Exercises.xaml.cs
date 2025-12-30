@@ -61,5 +61,11 @@ namespace Goliath
 
             this.Close();
         }
+
+        private void videoPlayer_MediaEnded(object sender, RoutedEventArgs e)
+        {
+            videoPlayer.Position = TimeSpan.Zero; 
+            videoPlayer.Play();
+        }
     }                                                           
 }

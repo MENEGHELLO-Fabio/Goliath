@@ -157,25 +157,30 @@ namespace Goliath
 
         private void buttonIndietro_Click(object sender, RoutedEventArgs e)
         {
-            //salva allenamento su csv
 
-            const string filePath = "allenamenti.csv";
-
-            if (!File.Exists(filePath))
+            if (selectedRoutine!= null)
             {
-                File.WriteAllText(filePath, "");
-            }
+                //salva allenamento su csv
 
-            using (StreamWriter writer = new StreamWriter(filePath, append: true))
-            {
-                writer.WriteLine($"ALLENAMENTO;{selectedRoutine.NomeRoutine};{DateTime.Now:yyyy-MM-dd}");
-                foreach (var esercizio in selectedRoutine.GetEsercizi())
+                const string filePath = "allenamenti.csv";
+
+                if (!File.Exists(filePath))
                 {
-                    writer.WriteLine(
-                        $"EXE;{esercizio.NomeEsercizio};{esercizio.Serie};{esercizio.Ripetizioni};{esercizio.Carico};{esercizio.RPE};{esercizio.VideoPath}"
-                    );
+                    File.WriteAllText(filePath, "");
+                }
+
+                using (StreamWriter writer = new StreamWriter(filePath, append: true))
+                {
+                    writer.WriteLine($"ALLENAMENTO;{selectedRoutine.NomeRoutine};{DateTime.Now:yyyy-MM-dd}");
+                    foreach (var esercizio in selectedRoutine.GetEsercizi())
+                    {
+                        writer.WriteLine(
+                            $"EXE;{esercizio.NomeEsercizio};{esercizio.Serie};{esercizio.Ripetizioni};{esercizio.Carico};{esercizio.RPE};{esercizio.VideoPath}"
+                        );
+                    }
                 }
             }
+           
 
             //ritorno a main window
 

@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:Goliath"
              mc:Ignorable="d">
 
-    <Border Background="#FFA6A6A6"
+    <Border Background="White"
             CornerRadius="12"
             Margin="10"
             Padding="20">
@@ -18,23 +18,23 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Label Content="ALLENAMENTO:"
-                   FontSize="26"
-                   FontWeight="Bold"
-                   Foreground="Black"/>
+            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                <Label Content="ALLENAMENTO:"
+               FontSize="26"
+               FontWeight="Bold"
+               Foreground="Black"/>
+
+                <TextBlock x:Name="dataAllenamento"
+                   FontSize="24"
+                   Foreground="Black"
+                   Margin="10,0,0,0"/>
+            </StackPanel>
 
             <TextBlock x:Name="tipoRoutine"
-                       Grid.Row="1"
-                       FontSize="22"
-                       Margin="0,5,0,0"
-                       Foreground="Black"/>
-
-            <TextBlock x:Name="dataAllenamento"
-                       HorizontalAlignment="Right"
-                       VerticalAlignment="Top"
-                       FontSize="18"
-                       Foreground="Black"/>
-
+               Grid.Row="1"
+               FontSize="22"
+               Margin="0,5,0,0"
+               Foreground="Black"/>
         </Grid>
 
     </Border>
