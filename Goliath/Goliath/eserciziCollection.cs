@@ -23,7 +23,7 @@ namespace Goliath
 
             collezioneVideo.LoadVideos();
 
-            if (collezioneVideo.files.Length == 0)
+            if (collezioneVideo.files == null || collezioneVideo.files.Length == 0)
             {
                 return;
             }
@@ -31,7 +31,7 @@ namespace Goliath
             foreach (string file in collezioneVideo.files)
             {
                 string nomeEsercizio = Path.GetFileNameWithoutExtension(file);
-                esercizio nuovoEsercizio = new esercizio(nomeEsercizio, 0, 0, 0, 0);
+                esercizio nuovoEsercizio = new esercizio(nomeEsercizio, new List<serie>());
                 nuovoEsercizio.VideoPath = file;
                 esercizi.Add(nuovoEsercizio);
             }
@@ -43,7 +43,7 @@ namespace Goliath
             if (!File.Exists("exercises.csv"))
             {
                 // crea un file vuoto con intestazione
-                File.WriteAllText("exercises.csv", "Nome;Serie;Ripetizioni;Carico;RPE;VideoPath\n");
+                File.WriteAllText("exercises.csv", "Nome;VideoPath\n");
             }
         }
 
@@ -55,35 +55,55 @@ namespace Goliath
             CreaCsvSeNonEsiste();
 
              var lines = File.ReadLines("exercises.csv");
+            esercizio current = null;
 
-            foreach (var line in lines.Skip(1))
+
+            foreach (var line in lines)
             {
+
+                if (string.IsNullOrWhiteSpace(line)) continue;
+
                 var part = line.Split(';');
-                if (part.Length < 6) continue;
 
-                string nome = part[0];
-                int.TryParse(part[1], out int serie);
-                int.TryParse(part[2], out int ripetizioni);
-                int.TryParse(part[3], out int carico);
-                int.TryParse(part[4], out int rpe);
-                string videoPath = part[5];
+                if (part[0] == "EX")
+                {
+                    string nome = part[1];
+                    string video = part[2];
 
-                esercizio ex = new esercizio(nome, serie, ripetizioni, carico, rpe);
+                    current = new esercizio(nome, new List<serie>());
+                    current.VideoPath = video;
 
-                ex.VideoPath = videoPath;
+                    esercizi.Add(current);
+                }
+                else if (part[0] == "SERIE" && current != null)
+                {
+                    int rip = int.Parse(part[1]);
+                    int car = int.Parse(part[2]);
 
-                esercizi.Add(ex);
+                    current.addSerie(new serie(rip, car));
+                }
 
             }
         }
         public void SalvaSuCSV()
         {
             List<string> lines = new List<string>();
-
+      
             foreach (var ex in esercizi)
             {
-                string line = $"{ex.NomeEsercizio};{ex.Serie};{ex.Ripetizioni};{ex.Carico};{ex.RPE};{ex.VideoPath}";
-                lines.Add(line);
+                string safeName = ex.NomeEsercizio.Replace(";", " ");
+                string safeVideo = (ex.VideoPath ?? "").Replace(";", " ");
+
+                // Riga esercizio
+                lines.Add($"EX;{safeName};{safeVideo}");
+
+                // Righe serie
+                foreach (var s in ex.getSerie())
+                {
+                    lines.Add($"SERIE;{s.Ripetizioni};{s.Carico}");
+                }
+
+                lines.Add(""); 
             }
 
             File.WriteAllLines("exercises.csv", lines);

@@ -9,45 +9,40 @@ namespace Goliath
        
 
         public string NomeEsercizio { get; }
-        public int Serie { get; }
-        public int Ripetizioni { get; }
-        public int Carico { get; private set; }
-        public int RPE { get; }
+
+        private List<serie> Serie;
+
         public string VideoPath { get; set; }
 
-        public esercizio(string nomeEsercizio, int serie, int ripetizioni, int carico, int RPE)
+        public esercizio(string nomeEsercizio, List<serie> s)
         {
             NomeEsercizio = nomeEsercizio;
-            Serie = serie;
-            Ripetizioni = ripetizioni;
-            Carico = carico;
-            this.RPE = RPE;
+            this.Serie = s;
             VideoPath = string.Empty;
         }
-
+        
+        public void addSerie(serie S)
+        {
+            if (S!=null)
+            {
+                Serie.Add(S);
+            }
+          
+        }
         public string getNomeEsercizio()
         {
             return NomeEsercizio;
         }
 
-        public int getSerie()
+        public List<serie> getSerie()
         {
             return Serie;
         }
 
-        public int getRipetizioni()
-        {
-            return Ripetizioni;
-        }
 
-        public int getCarico()
+        public serie getSeriePos(int pos)
         {
-            return Carico;
-        }
-
-        public void setCarico(int carico)
-        {
-            this.Carico = carico;
+            return Serie[pos];
         }
 
         public override string ToString()
