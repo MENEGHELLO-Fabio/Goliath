@@ -51,78 +51,81 @@ namespace Goliath
         private void caricaRoutines()
         {
             const string filePath = "routines.csv";
-            
-
             loadedRoutines.Clear();
 
             if (!File.Exists(filePath))
             {
-                // non esiste file: pulisci UI
                 RefreshRoutinesListView();
                 return;
             }
 
             try
             {
-                routine current = null;
+                routine currentRoutine = null;
+                esercizio currentExercise = null;
 
                 foreach (var raw in File.ReadLines(filePath))
                 {
-                    var line = (raw ?? string.Empty).Trim();
-                    if (string.IsNullOrWhiteSpace(line)) continue;
+                    var line = (raw ?? "").Trim();
+                    if (string.IsNullOrWhiteSpace(line))
+                        continue;
 
-                    // Trova la riga che contiene l'header che caratterizza l'inizio della routine
+                    // Nuova routine
                     if (line.StartsWith("ROUTINE;", StringComparison.OrdinalIgnoreCase))
                     {
-                        
-                        var parts = line.Split(new[] { ';' }, 2);
-                        var nome = parts.Length > 1 ? parts[1].Trim() : "UnnamedRoutine";
-                        current = new routine { NomeRoutine = nome };
-                        loadedRoutines.Add(current);
+                        var parts = line.Split(';');
+                        string nome = parts.Length > 1 ? parts[1] : "UnnamedRoutine";
+
+                        currentRoutine = new routine { NomeRoutine = nome };
+                        loadedRoutines.Add(currentRoutine);
+                        currentExercise = null;
                         continue;
                     }
 
-                    // Trova una riga contenente le informazioni dell'esercizio
+                    // Nuovo esercizio
                     if (line.StartsWith("EX;", StringComparison.OrdinalIgnoreCase))
                     {
-                        
-                        if (current == null)
-                        {
-                            // esercizio senza routine: ignora
-                            continue;
-                        }
+                        if (currentRoutine == null) continue;
 
-                        var fields = line.Substring(3).Split(';').Select(p => p.Trim()).ToArray();
-                        if (fields.Length < 6) continue;
+                        var parts = line.Split(';');
+                        if (parts.Length < 3) continue;
 
-                        string nomeEsercizio = fields[0];
-                        int serie = int.TryParse(fields[1], out var s) ? s : 0;
-                        int ripetizioni = int.TryParse(fields[2], out var r) ? r : 0;
-                        int carico = int.TryParse(fields[3], out var c) ? c : 0;
-                        int rpe = int.TryParse(fields[4], out var ppe) ? ppe : 0;
-                        string videoPath = fields[5];
-                        
+                        string nomeEsercizio = parts[1];
+                        string videoPath = parts[2];
 
-                        var ex = new esercizio(nomeEsercizio, serie, ripetizioni, carico, rpe)
-                        {
-                            VideoPath = videoPath
-                        };
+                        currentExercise = new esercizio(nomeEsercizio, new List<serie>());
+                        currentExercise.VideoPath = videoPath;
 
-                        current.AddEsercizio(ex);
+                        currentRoutine.AddEsercizio(currentExercise);
                         continue;
                     }
 
+                    // Serie dell'esercizio
+                    if (line.StartsWith("SERIE;", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (currentExercise == null) continue;
 
+                        var parts = line.Split(';');
+                        if (parts.Length < 4) continue;
+
+                        int rip = int.Parse(parts[1]);
+                        int car = int.Parse(parts[2]);
+
+
+                        currentExercise.addSerie(new serie(rip, car));
+                        continue;
+                    }
                 }
 
-                // aggiorna la UI
                 RefreshRoutinesListView();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Errore durante il caricamento delle routine: " + ex.Message, "Errore", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Errore durante il caricamento delle routine: " + ex.Message,
+                                "Errore", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
+
 
         // aggiorna la ListView mostrando i nomi delle routine
         private void RefreshRoutinesListView()
@@ -175,6 +178,7 @@ namespace Goliath
                         {
                             // salta il blocco: dalla riga corrente fino alla riga precedente alla prossima ROUTINE
                             removedBlock = true;
+
                             // avanza l'indice fino al prossimo header ROUTINE oppure fino alla fine delle righe scritte
                             i++;
                             for (; i < allLines.Count; i++)
@@ -216,4 +220,4 @@ namespace Goliath
             }
         }
     }
-}
+    }

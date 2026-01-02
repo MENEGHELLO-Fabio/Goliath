@@ -17,13 +17,15 @@
                 <MediaElement x:Name="videoBox" Height="150" LoadedBehavior="Manual" MediaEnded="videoBox_MediaEnded" UnloadedBehavior="Stop"/>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                     <TextBlock Text="Serie: " FontWeight="Bold"/>
-                    <TextBlock x:Name="serieBlock"/>
+                 
                 </StackPanel>
+                <ListBox x:Name="SerieList" Height="100" SelectionChanged="SerieList_SelectionChanged"/>
                 <StackPanel Orientation="Horizontal">
                     <TextBlock Text="Ripetizioni: " FontWeight="Bold"/>
                     <TextBlock x:Name="repBlock"/>
                 </StackPanel>
-                
+             
+
             </StackPanel>
         </Border>
 

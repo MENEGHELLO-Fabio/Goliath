@@ -83,8 +83,10 @@ namespace Goliath
 
             panel.Children.Clear();
 
-            routine routineCorrente = null; 
+            routine routineCorrente = null;
+            esercizio esercizioCorrente = null;
             List<routine> allenamentiFatti = new List<routine>();
+
 
             var righe = File.ReadAllLines(filePath);
 
@@ -116,16 +118,25 @@ namespace Goliath
                 }
                 else if (parti[0] == "EXE")
                 {
+
                     string nome = parti[1];
-                    int serie = int.Parse(parti[2]);
-                    int ripetizioni = int.Parse(parti[3]); 
-                    int carico = int.Parse(parti[4]);
-                    int rpe = int.Parse(parti[5]);
-                    string videoPath = parti[6];
-                    esercizio ex = new esercizio(nome, serie, ripetizioni, carico, rpe);
-                    ex.VideoPath = videoPath;
-                    routineCorrente.AddEsercizio(ex);
+                    string videoPath = parti[2];
+
+                    esercizioCorrente = new esercizio(nome, new List<serie>());
+                    esercizioCorrente.VideoPath = videoPath;
+                    routineCorrente.AddEsercizio(esercizioCorrente);
+
                 }
+                else if (parti[0] == "SERIE")
+                {
+                    int rip = int.Parse(parti[1]);
+                    int carico = int.Parse(parti[2]);
+                
+
+                    esercizioCorrente.addSerie(new serie(rip, carico));
+                }
+
+
 
 
 

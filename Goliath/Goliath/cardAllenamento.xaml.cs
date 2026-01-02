@@ -46,11 +46,19 @@ namespace Goliath
 
             foreach (var esercizio in selectedRoutine.GetEsercizi())
             {
-                var card = new EsercizioCard();
+                // Passo la lista delle serie al costruttore
+                var card = new EsercizioCard(esercizio.getSerie());
+
+                // Nome esercizio
                 card.nomeEsercizioBlock.Text = esercizio.NomeEsercizio;
-                card.serieBlock.Text = esercizio.Serie.ToString();
-                card.repBlock.Text = esercizio.Ripetizioni.ToString();
-                //card.videoBox.Source = new Uri(esercizio.VideoPath, UriKind.RelativeOrAbsolute);
+
+                // Ripetizioni della prima serie (se esiste)
+                if (esercizio.getSerie().Count > 0)
+                    card.repBlock.Text = esercizio.getSerie()[0].Ripetizioni.ToString();
+                else
+                    card.repBlock.Text = "-";
+
+                // Video
                 string fullPath = System.IO.Path.GetFullPath(esercizio.VideoPath);
                 card.videoBox.Source = new Uri(fullPath, UriKind.Absolute);
                 card.videoBox.Play();

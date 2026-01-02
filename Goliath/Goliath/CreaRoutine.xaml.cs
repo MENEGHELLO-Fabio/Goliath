@@ -119,7 +119,7 @@ namespace Goliath
                 // Righe serie
                 foreach (var s in ex.getSerie())
                 {
-                    lines.Add($"SERIE;{s.Ripetizioni};{s.Carico};{s.RPE}");
+                    lines.Add($"SERIE;{s.Ripetizioni};{s.Carico}");
                 }
 
                 // Riga vuota per separare

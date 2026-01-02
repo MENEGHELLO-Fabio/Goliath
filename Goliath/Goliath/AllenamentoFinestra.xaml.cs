@@ -52,7 +52,8 @@ namespace Goliath
 
             try
             {
-                routine current = null;
+                routine currentRoutine = null;
+                esercizio currentExercise = null;
 
                 foreach (var raw in File.ReadLines(filePath))
                 {
@@ -62,45 +63,47 @@ namespace Goliath
                     // Trova la riga che contiene l'header che caratterizza l'inizio della routine
                     if (line.StartsWith("ROUTINE;", StringComparison.OrdinalIgnoreCase))
                     {
-
-                        var parts = line.Split(new[] { ';' }, 2);
+                        var parts = line.Split(';');
                         var nome = parts.Length > 1 ? parts[1].Trim() : "UnnamedRoutine";
-                        current = new routine { NomeRoutine = nome };
-                        loadedRoutines.Add(current);
+
+                        currentRoutine = new routine { NomeRoutine = nome };
+                        loadedRoutines.Add(currentRoutine);
+                        currentExercise = null;
                         continue;
                     }
-
                     // Trova una riga contenente le informazioni dell'esercizio
                     if (line.StartsWith("EX;", StringComparison.OrdinalIgnoreCase))
                     {
+                        if (currentRoutine == null) continue;
 
-                        if (current == null)
-                        {
-                            // esercizio senza routine: ignora
-                            continue;
-                        }
+                        var parts = line.Split(';');
+                        if (parts.Length < 3) continue;
 
-                        var fields = line.Substring(3).Split(';').Select(p => p.Trim()).ToArray();
-                        if (fields.Length < 6) continue;
+                        string nomeEsercizio = parts[1];
+                        string videoPath = parts[2];
 
-                        string nomeEsercizio = fields[0];
-                        int serie = int.TryParse(fields[1], out var s) ? s : 0;
-                        int ripetizioni = int.TryParse(fields[2], out var r) ? r : 0;
-                        int carico = int.TryParse(fields[3], out var c) ? c : 0;
-                        int rpe = int.TryParse(fields[4], out var ppe) ? ppe : 0;
-                        string videoPath = fields[5];
+                        currentExercise = new esercizio(nomeEsercizio, new List<serie>());
+                        currentExercise.VideoPath = videoPath;
 
-
-                        var ex = new esercizio(nomeEsercizio, serie, ripetizioni, carico, rpe)
-                        {
-                            VideoPath = videoPath
-                        };
-
-                        current.AddEsercizio(ex);
+                        currentRoutine.AddEsercizio(currentExercise);
                         continue;
                     }
 
+                    // Serie dell'esercizio
+                    if (line.StartsWith("SERIE;", StringComparison.OrdinalIgnoreCase))
+                    {
+                        if (currentExercise == null) continue;
 
+                        var parts = line.Split(';');
+                        if (parts.Length < 3) continue;
+
+                        int rip = int.Parse(parts[1]);
+                        int car = int.Parse(parts[2]);
+              
+
+                        currentExercise.addSerie(new serie(rip, car) );
+                        continue;
+                    }
                 }
 
                 // aggiorna la UI
@@ -138,15 +141,19 @@ namespace Goliath
         {
             panel.Children.Clear();
 
-
-
             foreach (var esercizio in selectedRoutine.GetEsercizi())
             {
-                var card = new EsercizioCard();
+                var card = new EsercizioCard(esercizio.getSerie());
+
                 card.nomeEsercizioBlock.Text = esercizio.NomeEsercizio;
-                card.serieBlock.Text = esercizio.Serie.ToString();
-                card.repBlock.Text = esercizio.Ripetizioni.ToString();
-                //card.videoBox.Source = new Uri(esercizio.VideoPath, UriKind.RelativeOrAbsolute);
+
+                
+                // ripetizioni della prima serie (se esiste)
+                if (esercizio.getSerie().Count > 0)
+                    card.repBlock.Text = esercizio.getSerie()[0].Ripetizioni.ToString();
+                else
+                    card.repBlock.Text = "-";
+
                 string fullPath = System.IO.Path.GetFullPath(esercizio.VideoPath);
                 card.videoBox.Source = new Uri(fullPath, UriKind.Absolute);
                 card.videoBox.Play();
@@ -158,29 +165,33 @@ namespace Goliath
         private void buttonIndietro_Click(object sender, RoutedEventArgs e)
         {
 
-            if (selectedRoutine!= null)
+            if (selectedRoutine != null)
             {
                 //salva allenamento su csv
-
                 const string filePath = "allenamenti.csv";
 
                 if (!File.Exists(filePath))
-                {
                     File.WriteAllText(filePath, "");
-                }
 
                 using (StreamWriter writer = new StreamWriter(filePath, append: true))
                 {
                     writer.WriteLine($"ALLENAMENTO;{selectedRoutine.NomeRoutine};{DateTime.Now:dd-MM-yyyy}");
+
                     foreach (var esercizio in selectedRoutine.GetEsercizi())
                     {
-                        writer.WriteLine(
-                            $"EXE;{esercizio.NomeEsercizio};{esercizio.Serie};{esercizio.Ripetizioni};{esercizio.Carico};{esercizio.RPE};{esercizio.VideoPath}"
-                        );
+                        writer.WriteLine($"EXE;{esercizio.NomeEsercizio};{esercizio.VideoPath}");
+
+                        foreach (var s in esercizio.getSerie())
+                        {
+                            writer.WriteLine($"SERIE;{s.Ripetizioni};{s.Carico};");
+                        }
                     }
+
+                    writer.WriteLine(""); // separatore
                 }
             }
-           
+
+
 
             //ritorno a main window
 

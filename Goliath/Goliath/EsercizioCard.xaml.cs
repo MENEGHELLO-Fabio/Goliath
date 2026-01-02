@@ -20,9 +20,15 @@ namespace Goliath
     /// </summary>
     public partial class EsercizioCard : UserControl
     {
-        public EsercizioCard()
+        List<serie> serieDiEsercizio = new List<serie>();
+        public EsercizioCard(List<serie> serieDiEsercizio)
         {
             InitializeComponent();
+            this.serieDiEsercizio = serieDiEsercizio;
+            foreach (var item in serieDiEsercizio)
+            {
+                SerieList.Items.Add(item);
+            }
         }
 
         private void videoBox_MediaEnded(object sender, RoutedEventArgs e)
@@ -30,5 +36,17 @@ namespace Goliath
             videoBox.Position = TimeSpan.Zero;
             videoBox.Play();
         }
+
+        private void SerieList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            var selectedSerie = SerieList.SelectedItem as serie;
+            if (selectedSerie != null)
+            {
+                repBlock.Text = selectedSerie.Ripetizioni.ToString();
+            }
+        }
+
     }
+
 }

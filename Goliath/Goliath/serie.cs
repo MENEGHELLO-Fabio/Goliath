@@ -17,6 +17,6 @@ namespace Goliath
             this.Carico= Carico;
         }
 
-
+        public override string ToString() { return $"Rip: {Ripetizioni} "; }
     }
 }
