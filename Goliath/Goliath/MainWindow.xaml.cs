@@ -52,14 +52,7 @@ namespace Goliath
             
 
         }
-        private void tempButtonSettings_Click(object sender, RoutedEventArgs e)
-        {
-            SettingsWindow settingsWindow = new SettingsWindow();
-            this.Close();
-            settingsWindow.ShowDialog();
-            
 
-        }
 
         private void tempButtonAllenamento_Click(object sender, RoutedEventArgs e)
         {

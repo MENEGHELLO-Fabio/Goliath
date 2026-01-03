@@ -30,13 +30,6 @@
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="tempButtonSettings" Content="SETTINGS" HorizontalAlignment="Left" Margin="20,334,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonSettings_Click" Background="#FFB7B7B7">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-        </Button>
         <Label x:Name="LabelGoliath" Content="GOLIATH" Margin="0,0,592,341" VerticalAlignment="Bottom" Width="177" FontFamily="Showcard Gothic" FontSize="36" Background="#FF393939" Foreground="#FF858585" HorizontalAlignment="Right" Height="57" ClipToBounds="True">
         </Label>
         <ScrollViewer x:Name="barraScorrimento" Margin="239,0,0,0" Background="White" BorderBrush="White" Foreground="Black">

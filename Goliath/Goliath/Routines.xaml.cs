@@ -61,6 +61,8 @@ namespace Goliath
 
             try
             {
+                string currentProfile = ProfileHelper.GetCurrentProfileUsername();
+
                 routine currentRoutine = null;
                 esercizio currentExercise = null;
 
@@ -70,15 +72,42 @@ namespace Goliath
                     if (string.IsNullOrWhiteSpace(line))
                         continue;
 
-                    // Nuova routine
+                    // Nuova routine. Expect header: ROUTINE;ProfileUsername;RoutineName
                     if (line.StartsWith("ROUTINE;", StringComparison.OrdinalIgnoreCase))
                     {
                         var parts = line.Split(';');
-                        string nome = parts.Length > 1 ? parts[1] : "UnnamedRoutine";
+                        // if header has profile username (parts.Length >= 3), filter by it
+                        if (parts.Length >= 3)
+                        {
+                            var profileInFile = parts[1].Trim();
+                            var nome = parts.Length > 2 ? parts[2] : "UnnamedRoutine";
 
-                        currentRoutine = new routine { NomeRoutine = nome };
-                        loadedRoutines.Add(currentRoutine);
-                        currentExercise = null;
+                            if (!string.IsNullOrEmpty(currentProfile) && !string.Equals(profileInFile, currentProfile, StringComparison.OrdinalIgnoreCase))
+                            {
+                                // Skip this routine and its following blocks until next ROUTINE
+                                currentRoutine = null;
+                                currentExercise = null;
+                                continue;
+                            }
+
+                            currentRoutine = new routine { NomeRoutine = nome };
+                            loadedRoutines.Add(currentRoutine);
+                            currentExercise = null;
+                        }
+                        else
+                        {
+                            // backward compatibility: ROUTINE;RoutineName
+                            var nome = parts.Length > 1 ? parts[1] : "UnnamedRoutine";
+                            // If there is a currentProfile, prefer routines that have profile header. To keep it simple, load these legacy routines only if currentProfile is empty.
+                            if (!string.IsNullOrEmpty(currentProfile))
+                            {
+                                currentRoutine = null; currentExercise = null; continue;
+                            }
+                            currentRoutine = new routine { NomeRoutine = nome };
+                            loadedRoutines.Add(currentRoutine);
+                            currentExercise = null;
+                        }
+
                         continue;
                     }
 
@@ -106,11 +135,10 @@ namespace Goliath
                         if (currentExercise == null) continue;
 
                         var parts = line.Split(';');
-                        if (parts.Length < 4) continue;
+                        if (parts.Length < 3) continue;
 
-                        int rip = int.Parse(parts[1]);
-                        int car = int.Parse(parts[2]);
-
+                        if (!int.TryParse(parts[1], out int rip)) continue;
+                        if (!int.TryParse(parts[2], out int car)) continue;
 
                         currentExercise.addSerie(new serie(rip, car));
                         continue;
@@ -171,8 +199,8 @@ namespace Goliath
                     if (!removedBlock && line.StartsWith("ROUTINE;", StringComparison.OrdinalIgnoreCase))
                     {
                         // Trova il nome della routine selezionata
-                        var parts = line.Split(new[] { ';' }, 2);
-                        var nome = parts.Length > 1 ? parts[1].Trim() : string.Empty;
+                        var parts = line.Split(new[] { ';' }, 3);
+                        var nome = parts.Length > 2 ? parts[2].Trim() : (parts.Length > 1 ? parts[1].Trim() : string.Empty);
 
                         if (string.Equals(nome, selectedRoutine.NomeRoutine, StringComparison.OrdinalIgnoreCase))
                         {
@@ -220,4 +248,4 @@ namespace Goliath
             }
         }
     }
-    }
+}

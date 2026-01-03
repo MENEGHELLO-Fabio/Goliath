@@ -52,6 +52,8 @@ namespace Goliath
 
             try
             {
+                string currentProfile = ProfileHelper.GetCurrentProfileUsername();
+
                 routine currentRoutine = null;
                 esercizio currentExercise = null;
 
@@ -64,9 +66,37 @@ namespace Goliath
                     if (line.StartsWith("ROUTINE;", StringComparison.OrdinalIgnoreCase))
                     {
                         var parts = line.Split(';');
-                        var nome = parts.Length > 1 ? parts[1].Trim() : "UnnamedRoutine";
+                        // support header: ROUTINE;ProfileUsername;RoutineName
+                        if (parts.Length >= 3)
+                        {
+                            var profileInFile = parts[1].Trim();
+                            var nome = parts.Length > 2 ? parts[2].Trim() : "UnnamedRoutine";
 
-                        currentRoutine = new routine { NomeRoutine = nome };
+                            if (!string.IsNullOrEmpty(currentProfile) && !string.Equals(profileInFile, currentProfile, StringComparison.OrdinalIgnoreCase))
+                            {
+                                // Skip this routine block
+                                currentRoutine = null;
+                                currentExercise = null;
+                                continue;
+                            }
+
+                            currentRoutine = new routine { NomeRoutine = nome };
+                            loadedRoutines.Add(currentRoutine);
+                            currentExercise = null;
+                            continue;
+                        }
+
+                        // backward compatibility: ROUTINE;RoutineName
+                        var nomeLegacy = parts.Length > 1 ? parts[1].Trim() : "UnnamedRoutine";
+                        if (!string.IsNullOrEmpty(currentProfile))
+                        {
+                            // If a profile is loaded, skip legacy routines (they are unassociated)
+                            currentRoutine = null;
+                            currentExercise = null;
+                            continue;
+                        }
+
+                        currentRoutine = new routine { NomeRoutine = nomeLegacy };
                         loadedRoutines.Add(currentRoutine);
                         currentExercise = null;
                         continue;
@@ -97,11 +127,10 @@ namespace Goliath
                         var parts = line.Split(';');
                         if (parts.Length < 3) continue;
 
-                        int rip = int.Parse(parts[1]);
-                        int car = int.Parse(parts[2]);
-              
+                        if (!int.TryParse(parts[1], out int rip)) continue;
+                        if (!int.TryParse(parts[2], out int car)) continue;
 
-                        currentExercise.addSerie(new serie(rip, car) );
+                        currentExercise.addSerie(new serie(rip, car));
                         continue;
                     }
                 }

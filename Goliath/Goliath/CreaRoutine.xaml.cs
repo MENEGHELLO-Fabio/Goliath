@@ -89,8 +89,17 @@ namespace Goliath
 
             var lines = new List<string>();
 
-            // header della routine 
-            lines.Add($"ROUTINE;{currentRoutine.NomeRoutine}");
+            // header della routine: include username del profilo corrente se disponibile
+            string currentProfile = ProfileHelper.GetCurrentProfileUsername();
+            if (!string.IsNullOrWhiteSpace(currentProfile))
+            {
+                lines.Add($"ROUTINE;{currentProfile};{currentRoutine.NomeRoutine}");
+            }
+            else
+            {
+                // backward compatibility: legacy header without profile
+                lines.Add($"ROUTINE;{currentRoutine.NomeRoutine}");
+            }
 
             // per ogni esercizio aggiungi una riga EX;Nome;VideoPath
             foreach (var ex in currentRoutine.GetEsercizi())
