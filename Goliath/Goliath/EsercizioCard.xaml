@@ -24,7 +24,11 @@
                     <TextBlock Text="Ripetizioni: " FontWeight="Bold"/>
                     <TextBlock x:Name="repBlock"/>
                 </StackPanel>
-             
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="Carico: " FontWeight="Bold"/>
+                    <TextBlock x:Name="caricoBlock"/>
+                </StackPanel>
+
 
             </StackPanel>
         </Border>

@@ -24,6 +24,10 @@ namespace Goliath
         private routine selectedRoutine = null;
         public routine allenamentoDaTornare;
 
+        //variabili per tenere traccia della card e della serie attiva
+        private EsercizioCard cardAttiva;
+        private serie serieAttiva;
+
         public AllenamentoFinestra()
         {
             InitializeComponent();
@@ -31,6 +35,7 @@ namespace Goliath
 
             grid2.Visibility = Visibility.Visible;
             grid3.Visibility = Visibility.Collapsed;
+            grid4.Visibility = Visibility.Collapsed;
 
             caricaRoutines();
 
@@ -162,6 +167,7 @@ namespace Goliath
 
             grid2.Visibility = Visibility.Collapsed;
             grid3.Visibility = Visibility.Visible;
+            grid4.Visibility = Visibility.Visible;
 
             visualizzaAllenamento();
         }
@@ -172,7 +178,9 @@ namespace Goliath
 
             foreach (var esercizio in selectedRoutine.GetEsercizi())
             {
-                var card = new EsercizioCard(esercizio.getSerie());
+                var card = new EsercizioCard(esercizio.getSerie()); 
+                card.SerieSelezionata += Card_SerieSelezionata;
+
 
                 card.nomeEsercizioBlock.Text = esercizio.NomeEsercizio;
 
@@ -237,6 +245,44 @@ namespace Goliath
 
         }
 
+        private void buttonImposta_Click(object sender, RoutedEventArgs e)
+        {
+
+            if (serieAttiva == null) { 
+                     return;
+            }
+
+            if (!int.TryParse(boxRepFatte.Text, out int nuoveRep))
+            {
+                return;
+            }
+            if (!int.TryParse(boxCaricoUsato.Text, out int nuovoCarico))
+            {
+                return;
+            }
+
+            // aggiorno i valori della serie
+            serieAttiva.Ripetizioni = nuoveRep;
+            serieAttiva.Carico = nuovoCarico;
+
+            // aggiorno la UI della card
+            cardAttiva.repBlock.Text = nuoveRep.ToString();
+
+            // aggiorno la ListBox della card 
+            cardAttiva.SerieList.Items.Refresh();
+        }
+
+
+        //metodo per far capire a finestra card e serie attiva
+        private void Card_SerieSelezionata(EsercizioCard card, serie serie)
+        {
+            cardAttiva = card;
+            serieAttiva = serie;
+
+         
+        }
+
+
     }
-    
+
 }

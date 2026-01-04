@@ -20,6 +20,9 @@ namespace Goliath
     /// </summary>
     public partial class EsercizioCard : UserControl
     {
+        //evento personalizzato per segnalare la selezione di una serie
+        public event Action<EsercizioCard, serie> SerieSelezionata;
+
         List<serie> serieDiEsercizio = new List<serie>();
         public EsercizioCard(List<serie> serieDiEsercizio)
         {
@@ -44,6 +47,9 @@ namespace Goliath
             if (selectedSerie != null)
             {
                 repBlock.Text = selectedSerie.Ripetizioni.ToString();
+                caricoBlock.Text = selectedSerie.Carico.ToString();
+                //avviso la finestra principale della selezione
+                SerieSelezionata?.Invoke(this, selectedSerie);
             }
         }
 

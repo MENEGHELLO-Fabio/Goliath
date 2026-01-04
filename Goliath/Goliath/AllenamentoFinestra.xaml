@@ -20,23 +20,31 @@
             </ListView>
             <Button x:Name="buttonStart" Content="avvia allenamento" HorizontalAlignment="Left" Margin="74,350,0,0" VerticalAlignment="Top" Height="29" Width="146" Click="buttonStart_Click"/>
         </Grid>
+        <Grid x:Name="grid4" Margin="654,10,0,166">
+            <TextBox x:Name="boxRepFatte" HorizontalAlignment="Left" Margin="10,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+            <Label Content="REP FATTE" HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" Width="120"/>
+            <Label Content="CARICO USATO" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="boxCaricoUsato" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="120"/>
+            <Button x:Name="buttonImposta" Content="imposta" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" Height="25" Width="120" Click="buttonImposta_Click"/>
+        </Grid>
         <Grid x:Name="grid3" Background="#FFC8C8C8" Margin="0,0,146,0">
             <ScrollViewer x:Name="finestraScrolla">
                 <StackPanel x:Name="panel" Width="630"/>
             </ScrollViewer>
         </Grid>
         <Button x:Name="buttonIndietro" Content="indietro" HorizontalAlignment="Left" Height="56" Margin="659,351,0,0" VerticalAlignment="Top" Width="111" Click="buttonIndietro_Click">
-        <Button.Resources>
-            <Style TargetType="{x:Type Border}">
-                <Setter Property="CornerRadius" Value="12"/>
-            </Style>
-        </Button.Resources>
-        <Button.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FEA36AD7"/>
-                <GradientStop Color="#FF9A9A9A" Offset="1"/>
-            </LinearGradientBrush>
-        </Button.Background>
+            <Button.Resources>
+                <Style TargetType="{x:Type Border}">
+                    <Setter Property="CornerRadius" Value="12"/>
+                </Style>
+            </Button.Resources>
+            <Button.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="#FEA36AD7"/>
+                    <GradientStop Color="#FF9A9A9A" Offset="1"/>
+                </LinearGradientBrush>
+            </Button.Background>
         </Button>
+
     </Grid>
 </Window>
