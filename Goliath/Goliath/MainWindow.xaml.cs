@@ -81,7 +81,7 @@ namespace Goliath
             List<routine> allenamentiFatti = new List<routine>();
 
 
-            var righe = File.ReadAllLines(filePath);
+            var righe = File.ReadLines(filePath);
 
             foreach (var riga in righe)
             {

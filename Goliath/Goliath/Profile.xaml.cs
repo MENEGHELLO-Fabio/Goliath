@@ -23,37 +23,178 @@ namespace Goliath
         public Profile()
         {
             InitializeComponent();
+            // wire up login button if present
+            var accediBtn = this.FindName("buttonAccedi") as Button;
+            if (accediBtn != null)
+                accediBtn.Click += buttonAccedi_Click;
+
             Carica();
+        }
+
+        private string GetTextBoxText(string nameWithoutSuffix)
+        {
+            var tb = this.FindName(nameWithoutSuffix) as TextBox;
+            if (tb != null) return tb.Text;
+            // try with suffix '1'
+            tb = this.FindName(nameWithoutSuffix + "1") as TextBox;
+            return tb?.Text ?? string.Empty;
+        }
+
+        private void SetTextBoxText(string nameWithoutSuffix, string value)
+        {
+            var tb = this.FindName(nameWithoutSuffix) as TextBox;
+            if (tb != null) { tb.Text = value; return; }
+            tb = this.FindName(nameWithoutSuffix + "1") as TextBox;
+            if (tb != null) tb.Text = value;
+        }
+
+        private PasswordBox GetPasswordBox()
+        {
+            var pb = this.FindName("passwordBoxPassword") as PasswordBox;
+            if (pb != null) return pb;
+            return this.FindName("passwordBoxPassword1") as PasswordBox;
+        }
+
+        private Button GetButton(string name)
+        {
+            var b = this.FindName(name) as Button;
+            if (b != null) return b;
+            return this.FindName(name + "1") as Button;
+        }
+
+        private bool ProfileExistsByUsername(string username)
+        {
+            if (!File.Exists("profiles.csv")) return false;
+            try
+            {
+                foreach (var raw in File.ReadLines("profiles.csv"))
+                {
+                    if (string.IsNullOrWhiteSpace(raw)) continue;
+                    var parts = raw.Split(';').Select(p => p.Trim()).ToArray();
+                    if (parts.Length >= 3)
+                    {
+                        if (string.Equals(parts[2], username, StringComparison.OrdinalIgnoreCase))
+                            return true;
+                    }
+                }
+            }
+            catch { }
+            return false;
+        }
+
+        private (string raw, string[] parts)? FindProfileByUsername(string username)
+        {
+            if (!File.Exists("profiles.csv")) return null;
+            try
+            {
+                foreach (var raw in File.ReadLines("profiles.csv"))
+                {
+                    if (string.IsNullOrWhiteSpace(raw)) continue;
+                    var parts = raw.Split(';').Select(p => p.Trim()).ToArray();
+                    if (parts.Length >= 3)
+                    {
+                        if (string.Equals(parts[2], username, StringComparison.OrdinalIgnoreCase))
+                            return (raw, parts);
+                    }
+                }
+            }
+            catch { }
+            return null;
         }
 
         private void buttonCreaProfilo_Click(object sender, RoutedEventArgs e)
         {
-            
-            if (!int.TryParse(textBoxNumeroAllenamenti.Text, out int numeroAllenamenti))
+            string nome = GetTextBoxText("textBoxNome");
+            string cognome = GetTextBoxText("textBoxCognome");
+            string username = GetTextBoxText("textBoxUsername");
+            string numeroAllenamentiText = GetTextBoxText("textBoxNumeroAllenamenti");
+            var pb = GetPasswordBox();
+            string password = pb?.Password ?? string.Empty;
+
+            if (!int.TryParse(numeroAllenamentiText, out int numeroAllenamenti))
             {
                 MessageBox.Show("Inserisci un numero di allenamenti valido.");
                 return;
             }
 
-            utente utente1 = new utente(textBoxNome.Text.Trim(), textBoxCognome.Text.Trim(), textBoxUsername.Text.Trim());
-            utente1.setNumeroAllenamenti(numeroAllenamenti);
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                MessageBox.Show("Inserisci un username.");
+                return;
+            }
 
-            
-            string record = $"{textBoxNome.Text.Trim()};{textBoxCognome.Text.Trim()};{textBoxUsername.Text.Trim()};{numeroAllenamenti}";
-            
+            // controllo se esiste già username
+            if (ProfileExistsByUsername(username))
+            {
+                MessageBox.Show("Username già presente. Scegli un altro username.", "Errore", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // crea record con password (ultimo campo)
+            string record = $"{nome.Trim()};{cognome.Trim()};{username.Trim()};{numeroAllenamenti};{password}";
+
             bool hasContent = File.Exists("profiles.csv") && new FileInfo("profiles.csv").Length > 0;
-            File.AppendAllText("profiles.csv", (hasContent ? Environment.NewLine : "") + record);   //controllo se il file contiene già un profilo di modo da scrivere nella riga successiva
+            File.AppendAllText("profiles.csv", (hasContent ? Environment.NewLine : "") + record);
 
-            textBoxNome.Clear();
-            textBoxNumeroAllenamenti.Clear();
-            textBoxCognome.Clear();
-            textBoxUsername.Clear();
+            SetTextBoxText("textBoxNome", string.Empty);
+            SetTextBoxText("textBoxNumeroAllenamenti", string.Empty);
+            SetTextBoxText("textBoxCognome", string.Empty);
+            SetTextBoxText("textBoxUsername", string.Empty);
+            if (pb != null) pb.Password = string.Empty;
 
             Carica();
+
+            MessageBox.Show("Profilo creato con successo!");
+        }
+
+        private void buttonAccedi_Click(object sender, RoutedEventArgs e)
+        {
+            string username = GetTextBoxText("textBoxUsername");
+            var pb = GetPasswordBox();
+            string password = pb?.Password ?? string.Empty;
+
+            if (string.IsNullOrWhiteSpace(username))
+            {
+                MessageBox.Show("Inserisci l'username.", "Errore", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var found = FindProfileByUsername(username);
+            if (found == null)
+            {
+                MessageBox.Show("Profilo non trovato.", "Errore", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var parts = found.Value.parts;
+            // parts: nome;cognome;username;numeroAllenamenti;password (password optional if older lines)
+            string storedPassword = parts.Length >= 5 ? parts[4] : string.Empty;
+
+            if (!string.Equals(storedPassword, password, StringComparison.Ordinal))
+            {
+                MessageBox.Show("Password errata.", "Errore", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            // login ok: append this profile as last line so Carica() will pick it as the active profile
+            try
+            {
+                string raw = found.Value.raw;
+                var lastLine = File.ReadLines("profiles.csv").LastOrDefault() ?? string.Empty;
+                if (!string.Equals(lastLine, raw, StringComparison.Ordinal))
+                {
+                    File.AppendAllText("profiles.csv", Environment.NewLine + raw);
+                }
+            }
+            catch { }
+
+            Carica();
+            MessageBox.Show("Accesso effettuato.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         private void Carica()
         {
+            // read last profile line and populate fields
             if (!File.Exists("profiles.csv"))
             {
                 return;
@@ -62,13 +203,14 @@ namespace Goliath
             var info = new FileInfo("profiles.csv");
             if (info.Length == 0)
             {
-                textBoxNome.Text = "";
-                textBoxCognome.Text = "";
-                textBoxUsername.Text = "";
+                SetTextBoxText("textBoxNome", string.Empty);
+                SetTextBoxText("textBoxCognome", string.Empty);
+                SetTextBoxText("textBoxUsername", string.Empty);
+                SetTextBoxText("textBoxNumeroAllenamenti", string.Empty);
+                var pb = GetPasswordBox(); if (pb != null) pb.Password = string.Empty;
                 return;
             }
 
-            
             string ultimaRiga;
             try
             {
@@ -81,28 +223,32 @@ namespace Goliath
             }
 
             string[] campi = ultimaRiga.Split(';');
-            if (campi.Length == 4)
+            // accept both formats: name;cognome;username;numero OR name;cognome;username;numero;password
+            if (campi.Length >= 4)
             {
+                SetTextBoxText("textBoxNome", campi[0]);
+                SetTextBoxText("textBoxCognome", campi[1]);
+                SetTextBoxText("textBoxUsername", campi[2]);
 
-
-                textBoxNome.Text = campi[0];
-                textBoxCognome.Text = campi[1];
-                textBoxUsername.Text = campi[2];
-
-                // controlla se campi[3] è un int
                 if (int.TryParse(campi[3].Trim(), out int numeroAllenamenti))
                 {
-                    textBoxNumeroAllenamenti.Text = numeroAllenamenti.ToString();
+                    SetTextBoxText("textBoxNumeroAllenamenti", numeroAllenamenti.ToString());
                 }
                 else
                 {
                     MessageBox.Show("Errore nel formato del numero degli allenamenti nell'ultima riga.");
-                    textBoxNumeroAllenamenti.Text = string.Empty;
+                    SetTextBoxText("textBoxNumeroAllenamenti", string.Empty);
+                }
+
+                var pb = GetPasswordBox();
+                if (pb != null)
+                {
+                    pb.Password = campi.Length >= 5 ? campi[4] : string.Empty;
                 }
             }
             else
             {
-                MessageBox.Show("Formato del file CSV non valido (ultima riga).");
+                MessageBox.Show("Formato del file CSV non valido (ultima riga).", "Errore", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
