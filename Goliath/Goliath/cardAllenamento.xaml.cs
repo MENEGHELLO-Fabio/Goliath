@@ -68,5 +68,15 @@ namespace Goliath
                 panel.Children.Add(card);
             }
         }
+
+        private static string FindProjectFolder(string projectFolderName)
+        {
+            var dir = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+            while (dir != null && !string.Equals(dir.Name, projectFolderName, StringComparison.OrdinalIgnoreCase))
+            {
+                dir = dir.Parent;
+            }
+            return dir?.FullName ?? AppDomain.CurrentDomain.BaseDirectory;
+        }
     }
 }
