@@ -42,10 +42,12 @@ namespace Goliath
         {
             panel.Children.Clear();
 
-
-
-            foreach (var esercizio in selectedRoutine.GetEsercizi())
+            // iterate exercises in reverse order so last appears first
+            var esercizi = selectedRoutine.GetEsercizi();
+            for (int i = esercizi.Count - 1; i >= 0; i--)
             {
+                var esercizio = esercizi[i];
+
                 // Passo la lista delle serie al costruttore
                 var card = new EsercizioCard(esercizio.getSerie());
 

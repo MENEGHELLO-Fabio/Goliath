@@ -176,8 +176,12 @@ namespace Goliath
         {
             panel.Children.Clear();
 
-            foreach (var esercizio in selectedRoutine.GetEsercizi())
+            // iterate exercises in reverse so last appears first
+            var esercizi = selectedRoutine.GetEsercizi();
+            for (int i = esercizi.Count - 1; i >= 0; i--)
             {
+                var esercizio = esercizi[i];
+
                 var card = new EsercizioCard(esercizio.getSerie()); 
                 card.SerieSelezionata += Card_SerieSelezionata;
 
@@ -273,7 +277,7 @@ namespace Goliath
         }
 
 
-        //metodo per far capire a finestra card e serie attiva
+        //metodo perfar capire a finestra card e serie attiva
         private void Card_SerieSelezionata(EsercizioCard card, serie serie)
         {
             cardAttiva = card;

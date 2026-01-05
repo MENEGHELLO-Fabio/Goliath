@@ -139,9 +139,11 @@ namespace Goliath
                 allenamentiFatti.Add(routineCorrente);
 
 
-            //carico allenamenti fatti
-            foreach (var routineI in allenamentiFatti)
+            //carico allenamenti dall'ultimo al primo
+
+            for (int i = allenamentiFatti.Count - 1; i >= 0; i--)
             {
+                var routineI = allenamentiFatti[i];
 
                 // Titolo
                 var cardTitolo = new cardDescrizioneAllenamento();
@@ -150,12 +152,11 @@ namespace Goliath
 
                 panel.Children.Add(cardTitolo);
 
-                //  esercizi
-
+                // esercizi
                 var card = new cardAllenamento(routineI);
-
                 panel.Children.Add(card);
             }
         }
     }
 }
+    
