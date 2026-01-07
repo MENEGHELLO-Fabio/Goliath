@@ -32,7 +32,7 @@ namespace Goliath
             caricaRoutines();
         }
 
-        // Legge routines da routines.csv (filtra per profilo corrente se presente)
+        // Legge routines da routines.csv e carica solo quelle del profilo loggato
         private void caricaRoutines()
         {
             const string filePath = "routines.csv";
@@ -48,7 +48,7 @@ namespace Goliath
 
             try
             {
-                string currentProfile = ProfileHelper.GetCurrentProfileUsername();
+                string currentProfile = ProfileHelper.GetCurrentProfileUsername()?.Trim();
 
                 routine currentRoutine = null;
                 esercizio currentExercise = null;
@@ -58,22 +58,27 @@ namespace Goliath
                     var line = (raw ?? string.Empty).Trim();
                     if (string.IsNullOrWhiteSpace(line)) continue;
 
-                    // Trova header ROUTINE;[profile];Name
                     if (line.StartsWith("ROUTINE;", StringComparison.OrdinalIgnoreCase))
                     {
                         var parts = line.Split(';');
-                        // support header: ROUTINE;ProfileUsername;RoutineName
                         if (parts.Length >= 3)
                         {
-                            var profileInFile = parts[1].Trim();
+                            var owner = parts[1].Trim();
                             var nome = parts.Length > 2 ? parts[2].Trim() : "UnnamedRoutine";
 
-                            if (!string.IsNullOrEmpty(currentProfile) && !string.Equals(profileInFile, currentProfile, StringComparison.OrdinalIgnoreCase))
+                            if (!string.IsNullOrEmpty(currentProfile))
                             {
-                                // Skip this routine block
-                                currentRoutine = null;
-                                currentExercise = null;
-                                continue;
+                                if (!string.Equals(owner, currentProfile, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    currentRoutine = null;
+                                    currentExercise = null;
+                                    continue;
+                                }
+                            }
+                            else
+                            {
+                                // se non loggato non caricare routine con owner
+                                currentRoutine = null; currentExercise = null; continue;
                             }
 
                             currentRoutine = new routine { NomeRoutine = nome };
@@ -82,21 +87,18 @@ namespace Goliath
                             continue;
                         }
 
-                        // backward compatibility: ROUTINE;RoutineName
+                        // legacy: ROUTINE;RoutineName
                         var nomeLegacy = parts.Length > 1 ? parts[1].Trim() : "UnnamedRoutine";
                         if (!string.IsNullOrEmpty(currentProfile))
                         {
-                            currentRoutine = null;
-                            currentExercise = null;
-                            continue;
+                            currentRoutine = null; currentExercise = null; continue;
                         }
-
                         currentRoutine = new routine { NomeRoutine = nomeLegacy };
                         loadedRoutines.Add(currentRoutine);
                         currentExercise = null;
                         continue;
                     }
-                    // Nuovo esercizio (EX;)
+
                     if (line.StartsWith("EX;", StringComparison.OrdinalIgnoreCase))
                     {
                         if (currentRoutine == null) continue;
@@ -114,7 +116,6 @@ namespace Goliath
                         continue;
                     }
 
-                    // Serie dell'esercizio
                     if (line.StartsWith("SERIE;", StringComparison.OrdinalIgnoreCase))
                     {
                         if (currentExercise == null) continue;
@@ -135,7 +136,7 @@ namespace Goliath
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Errore durante il caricamento delle routine: " + ex.Message, "Errore", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("Errore durante il caricamento delle routine");
             }
         }
 

@@ -44,6 +44,7 @@ namespace Goliath
         }
 
         // Legge il file "routines.csv" e costruisce oggetti routine con esercizi interni
+        // Carica solo le routine appartenenti al profilo attualmente loggato
         private void caricaRoutines()
         {
             const string filePath = "routines.csv";
@@ -57,7 +58,8 @@ namespace Goliath
 
             try
             {
-                string currentProfile = ProfileHelper.GetCurrentProfileUsername();
+                // username del profilo corrente (se vuoto significa nessun login)
+                string currentProfile = ProfileHelper.GetCurrentProfileUsername()?.Trim();
 
                 routine currentRoutine = null;
                 esercizio currentExercise = null;
@@ -68,19 +70,29 @@ namespace Goliath
                     if (string.IsNullOrWhiteSpace(line))
                         continue;
 
-                    // Nuova routine. Expect header: ROUTINE;ProfileUsername;RoutineName
                     if (line.StartsWith("ROUTINE;", StringComparison.OrdinalIgnoreCase))
                     {
                         var parts = line.Split(';');
-                        // if header has profile username (parts.Length >= 3), filter by it
+                        // formato atteso: ROUTINE;Owner;RoutineName
                         if (parts.Length >= 3)
                         {
-                            var profileInFile = parts[1].Trim();
-                            var nome = parts.Length > 2 ? parts[2] : "UnnamedRoutine";
+                            var owner = parts[1].Trim();
+                            var nome = parts[2].Trim();
 
-                            if (!string.IsNullOrEmpty(currentProfile) && !string.Equals(profileInFile, currentProfile, StringComparison.OrdinalIgnoreCase))
+                            // se esiste un profilo loggato, carica solo le routine di quell'owner
+                            if (!string.IsNullOrEmpty(currentProfile))
                             {
-                                // Salta questo blocco di routine
+                                if (!string.Equals(owner, currentProfile, StringComparison.OrdinalIgnoreCase))
+                                {
+                                    currentRoutine = null;
+                                    currentExercise = null;
+                                    continue; // salto blocco non appartenente all'utente
+                                }
+                            }
+                            else
+                            {
+                                // se non c'è profilo loggato, possiamo decidere di non caricare alcuna routine
+                                // oppure caricare solo legacy (senza owner). Qui non carichiamo routine con owner se non loggato.
                                 currentRoutine = null;
                                 currentExercise = null;
                                 continue;
@@ -92,10 +104,12 @@ namespace Goliath
                         }
                         else
                         {
-                            // compatibilità: ROUTINE;RoutineName legacy
-                            var nome = parts.Length > 1 ? parts[1] : "UnnamedRoutine";
+                            // legacy: ROUTINE;RoutineName (senza owner)
+                            // carichiamo queste solo se non c'è profilo loggato (compatibilità)
+                            var nome = parts.Length > 1 ? parts[1].Trim() : "UnnamedRoutine";
                             if (!string.IsNullOrEmpty(currentProfile))
                             {
+                                // se utente loggato, ignora legacy non assegnate
                                 currentRoutine = null; currentExercise = null; continue;
                             }
                             currentRoutine = new routine { NomeRoutine = nome };
