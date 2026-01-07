@@ -26,21 +26,32 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="bd" Property="Background" Value="#FFBFBFBF"/> <!-- hover grigio -->
-                                <Setter TargetName="bd" Property="BorderBrush" Value="#FF9E9E9E"/>
+                                <Setter TargetName="bd" Property="Background" Value="#FF6D6D6D"/> <!-- hover grigio -->
+                                <Setter TargetName="bd" Property="BorderBrush" Value="#FF444444"/>
                             </Trigger>
                             <Trigger Property="IsPressed" Value="True">
-                                <Setter TargetName="bd" Property="Background" Value="#FF9E9E9E"/> <!-- pressed più scuro -->
-                                <Setter TargetName="bd" Property="BorderBrush" Value="#FF7F7F7F"/>
+                                <Setter TargetName="bd" Property="Background" Value="#FF6D6D6D"/> <!-- pressed più scuro -->
+                                <Setter TargetName="bd" Property="BorderBrush" Value="#FF444444"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter TargetName="bd" Property="Background" Value="#FFE8E8E8"/>
-                                <Setter Property="Foreground" Value="#FF9A9A9A"/>
+                                <Setter TargetName="bd" Property="Background" Value="#FF6D6D6D"/>
+                                <Setter Property="Foreground" Value="#FF444444"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <!-- Font moderno per le Label: usa Segoe UI (sistema) come scelta moderna minimal -->
+        <FontFamily x:Key="AppLabelFont">Segoe UI, Arial, Sans-Serif</FontFamily>
+
+        <!-- Stile globale per Label: applica font, dimensione e colore -->
+        <Style TargetType="Label">
+            <Setter Property="FontFamily" Value="{StaticResource AppLabelFont}"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Foreground" Value="#FF2B2B2B"/>
+        </Style>
+
     </Application.Resources>
 </Application>

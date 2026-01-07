@@ -31,7 +31,7 @@
                       MediaEnded="videoPlayer_MediaEnded"
                       Grid.Row="1"/>
 
-        <Button x:Name="buttonReturn" Margin="384,310,50,30" Grid.Row="1" Grid.Column="1" Content="Salva" FontFamily="Verdana" Click="buttonReturn_Click_1"/>
+        <Button x:Name="buttonReturn" Margin="384,310,50,30" Grid.Row="1" Grid.Column="1" Content="Salva" Click="buttonReturn_Click_1"/>
 
     </Grid>
 </Window>
