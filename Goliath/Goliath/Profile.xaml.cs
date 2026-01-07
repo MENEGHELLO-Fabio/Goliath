@@ -15,7 +15,7 @@ namespace Goliath
         public Profile()
         {
             InitializeComponent();
-            // wire up login button if present
+         
             var accediBtn = this.FindName("buttonAccedi") as Button;
             if (accediBtn != null)
                 accediBtn.Click += buttonAccedi_Click;
@@ -28,7 +28,7 @@ namespace Goliath
         {
             var tb = this.FindName(nameWithoutSuffix) as TextBox;
             if (tb != null) return tb.Text;
-            // try with suffix '1'
+          
             tb = this.FindName(nameWithoutSuffix + "1") as TextBox;
             return tb?.Text ?? string.Empty;
         }
@@ -135,6 +135,8 @@ namespace Goliath
             bool hasContent = File.Exists("profiles.csv") && new FileInfo("profiles.csv").Length > 0;
             File.AppendAllText("profiles.csv", (hasContent ? Environment.NewLine : "") + record);
 
+          
+
             SetTextBoxText("textBoxNome", string.Empty);
             SetTextBoxText("textBoxNumeroAllenamenti", string.Empty);
             SetTextBoxText("textBoxCognome", string.Empty);
@@ -167,7 +169,7 @@ namespace Goliath
             }
 
             var parts = found.Value.parts;
-            // parts: nome;cognome;username;numeroAllenamenti;password (password optional if older lines)
+            
             string storedPassword = parts.Length >= 5 ? parts[4] : string.Empty;
 
             if (!string.Equals(storedPassword, password, StringComparison.Ordinal))
@@ -176,7 +178,8 @@ namespace Goliath
                 return;
             }
 
-            // login ok: append this profile as last line so Carica() will pick it as the active profile
+         
+
             try
             {
                 string raw = found.Value.raw;
@@ -195,7 +198,7 @@ namespace Goliath
         // Carica l'ultimo profilo dal CSV e popola i campi della UI
         private void Carica()
         {
-            // read last profile line and populate fields
+           
             if (!File.Exists("profiles.csv"))
             {
                 return;
@@ -224,7 +227,7 @@ namespace Goliath
             }
 
             string[] campi = ultimaRiga.Split(';');
-            // accept both formats: name;cognome;username;numero OR name;cognome;username;numero;password
+           
             if (campi.Length >= 4)
             {
                 SetTextBoxText("textBoxNome", campi[0]);
@@ -256,10 +259,29 @@ namespace Goliath
         // Cancella tutti i profili eliminando il file CSV
         private void buttonFormattaProfili_Click(object sender, RoutedEventArgs e)
         {
-            File.Delete("profiles.csv");
-            MessageBox.Show("Tutti i profili sono stati cancellati.");
-            Carica();
+            try
+            {
+                // Cancella tutti i file
+                if (File.Exists("profiles.csv")) File.Delete("profiles.csv");
+                if (File.Exists("routines.csv")) File.Delete("routines.csv");
+                if (File.Exists("allenamenti.csv")) File.Delete("allenamenti.csv");
+
+                MessageBox.Show("Tutti i profili, routines e allenamenti sono stati cancellati.");
+
+                // Svuota UI
+                Carica();
+
+                // Torna alla MainWindow
+                MainWindow main = new MainWindow();
+                this.Close();
+                main.ShowDialog();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Errore durante la formattazione: " + ex.Message);
+            }
         }
+
 
         // Torna alla MainWindow
         private void buttonHome_Click(object sender, RoutedEventArgs e)
@@ -268,5 +290,18 @@ namespace Goliath
             this.Close();
             main.ShowDialog();
         }
+
+        private void buttonExit_Click(object sender, RoutedEventArgs e)
+        {
+            // Aggiunge una riga dummy per "disattivare" il profilo attivo
+            File.AppendAllText("profiles.csv", Environment.NewLine + ";;;");
+
+            MainWindow main = new MainWindow();
+            this.Close();
+            main.ShowDialog();
+        }
+
+
+
     }
 }

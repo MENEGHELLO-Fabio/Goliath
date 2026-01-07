@@ -26,7 +26,8 @@
 
         <Label x:Name="labelPassword1" Content="Password:" HorizontalAlignment="Left" Height="34" Margin="467,77,0,0" VerticalAlignment="Top" Width="76" Foreground="LightGray" Background="{x:Null}"/>
         <PasswordBox x:Name="passwordBoxPassword1" HorizontalAlignment="Left" Height="36" Margin="467,117,0,0" VerticalAlignment="Top" Width="153" PasswordChar="◉"/>
-        <Button x:Name="buttonAccedi" Content="Accedi" HorizontalAlignment="Left" Height="26" Margin="467,0,0,0" VerticalAlignment="Center" Width="94"/>
+        <Button x:Name="buttonAccedi" Content="Accedi" HorizontalAlignment="Left" Height="26" Margin="467,0,0,0" VerticalAlignment="Center" Width="94" Click="buttonAccedi_Click"/>
+        <Button x:Name="buttonExit1" Content="Exit" HorizontalAlignment="Left" Height="29" Margin="620,204,0,0" VerticalAlignment="Top" Width="102" Click="buttonExit_Click"/>
 
     </Grid>
 </Window>

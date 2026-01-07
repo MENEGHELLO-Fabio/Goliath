@@ -6,7 +6,7 @@ namespace Goliath
 {
     public static class ProfileHelper
     {
-
+       
         //oggetto che ritorna il nome utente del profilo corrente 
         public static string GetCurrentProfileUsername()
         {

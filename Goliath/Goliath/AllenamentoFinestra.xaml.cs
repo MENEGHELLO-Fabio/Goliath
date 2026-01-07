@@ -19,10 +19,21 @@ namespace Goliath
         // variabili per tenere traccia della card e della serie attiva
         private EsercizioCard cardAttiva;
         private serie serieAttiva;
+        //tempo
+        private System.Windows.Threading.DispatcherTimer timer;
+        private TimeSpan tempoTrascorso;
+
 
         public AllenamentoFinestra()
         {
             InitializeComponent();
+            //tempo
+            timer = new System.Windows.Threading.DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+            tempoTrascorso = TimeSpan.Zero;
+
+
             selectedRoutine = null;
 
             grid2.Visibility = Visibility.Visible;
@@ -87,7 +98,7 @@ namespace Goliath
                             continue;
                         }
 
-                        // legacy: ROUTINE;RoutineName
+                        
                         var nomeLegacy = parts.Length > 1 ? parts[1].Trim() : "UnnamedRoutine";
                         if (!string.IsNullOrEmpty(currentProfile))
                         {
@@ -152,6 +163,10 @@ namespace Goliath
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
             if (routinesList.SelectedItem == null) return;
+            //tempo
+            tempoTrascorso = TimeSpan.Zero;
+            tempo.Text = "00:00";
+            timer.Start();
 
             selectedRoutine = (routine)routinesList.SelectedItem;
 
@@ -167,7 +182,7 @@ namespace Goliath
         {
             panel.Children.Clear();
 
-            // iterate exercises in reverse so last appears first
+           
             var esercizi = selectedRoutine.GetEsercizi();
             for (int i = esercizi.Count - 1; i >= 0; i--)
             {
@@ -197,6 +212,7 @@ namespace Goliath
         {
             if (selectedRoutine != null)
             {
+                timer.Stop();
                 // salva allenamento su csv
                 const string filePath = "allenamenti.csv";
 
@@ -258,5 +274,11 @@ namespace Goliath
             cardAttiva = card;
             serieAttiva = serie;
         }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            tempoTrascorso = tempoTrascorso.Add(TimeSpan.FromSeconds(1));
+            tempo.Text = tempoTrascorso.ToString(@"mm\:ss");
+        }
+
     }
 }

@@ -24,7 +24,7 @@ namespace Goliath
         {
             InitializeComponent();
             currentRoutine = new routine();
-            // opzionale: mostra la lista degli esercizi correnti della routine nella UI (se presente)
+           
         }
 
         // Chiude la finestra di creazione routine
@@ -67,7 +67,7 @@ namespace Goliath
             {
                 esercizio ex = exercisesWindow.esercizioSelezionato;
                 nomeEsercizioBlock.Text = ex.NomeEsercizio;
-                // Salvo il VideoPath in un campo nascosto
+                
                 videoPathSelezionato = ex.VideoPath;
             }
         }
