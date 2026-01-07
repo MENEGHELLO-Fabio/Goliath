@@ -8,8 +8,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="10" Padding="10" Background="#FF2A294C">
-            <StackPanel Orientation="Vertical" Background="#FFBFBFBF">
+        <Border BorderThickness="1" CornerRadius="0" Margin="-4,10,10,10" Padding="10" Background="#FFC7C7C7">
+            <StackPanel Orientation="Vertical">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                     <TextBlock Text="Nome esercizio: " FontWeight="Bold" Foreground="#FF5F5A5A"/>
                     <TextBlock x:Name="nomeEsercizioBlock" Text="H"/>
@@ -25,7 +25,7 @@
                     <TextBlock x:Name="repBlock"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Carico: " FontWeight="Bold" Foreground="#FFF37D7D"/>
+                    <TextBlock Text="Carico: " FontWeight="Bold" Foreground="#FF2A294C"/>
                     <TextBlock x:Name="caricoBlock"/>
                 </StackPanel>
 

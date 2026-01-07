@@ -13,21 +13,21 @@
             <RowDefinition Height="202*"/>
         </Grid.RowDefinitions>
         <Rectangle HorizontalAlignment="Left" Height="434" Stroke="Black" VerticalAlignment="Top" Width="239" Fill="#FF393939" Grid.RowSpan="2"/>
-        <Button x:Name="tempButtonProfiles" Content="PROFILE" HorizontalAlignment="Left" Margin="18,245,0,0" VerticalAlignment="Top" Height="41" Width="161" Click="tempButtonProfiles_Click" Background="#FFC6C6C6" Grid.Row="1">
+        <Button x:Name="tempButtonProfiles" Content="PROFILE" HorizontalAlignment="Left" Margin="37,262,0,0" VerticalAlignment="Top" Height="41" Width="161" Click="tempButtonProfiles_Click" Background="#FFC6C6C6" Grid.Row="1">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="12"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="tempButtonRoutines" Content="ROUTINES" HorizontalAlignment="Left" Margin="20,128,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonRoutines_Click" Background="#FFC2C2C2" Grid.Row="1">
+        <Button x:Name="tempButtonRoutines" Content="ROUTINES" HorizontalAlignment="Left" Margin="39,145,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonRoutines_Click" Background="#FFC2C2C2" Grid.Row="1">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="12"/>
                 </Style>
             </Button.Resources>
         </Button>
-        <Button x:Name="tempButtonExercises" Content="EXERCISES" HorizontalAlignment="Left" Margin="20,187,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonExercises_Click" Background="#FFC3C3C3" Grid.Row="1">
+        <Button x:Name="tempButtonExercises" Content="EXERCISES" HorizontalAlignment="Left" Margin="39,204,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonExercises_Click" Background="#FFC3C3C3" Grid.Row="1">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="12"/>
@@ -37,9 +37,9 @@
         <Label x:Name="LabelGoliath" Content="GOLIATH" Margin="0,0,592,341" VerticalAlignment="Bottom" Width="177" FontFamily="Showcard Gothic" FontSize="36" Background="#FF393939" Foreground="#FF858585" HorizontalAlignment="Right" Height="57" ClipToBounds="True" Grid.Row="1">
         </Label>
         <ScrollViewer x:Name="barraScorrimento" Margin="239,0,0,0" Background="White" BorderBrush="White" Foreground="Black" Grid.RowSpan="2">
-            <StackPanel x:Name="panel" Width="548" Background="#FFE3E3E3"/>
+            <StackPanel x:Name="panel" Width="548" Background="#FF393939"/>
         </ScrollViewer>
-        <Button x:Name="tempButtonAllenamento" FontFamily="Arial Nova" Content="AVVIA ALLENAMENTO" HorizontalAlignment="Left" Margin="20,68,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonAllenamento_Click" Background="Silver" Grid.Row="1">
+        <Button x:Name="tempButtonAllenamento" FontFamily="Arial Nova" Content="AVVIA ALLENAMENTO" HorizontalAlignment="Left" Margin="39,85,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonAllenamento_Click" Background="Silver" Grid.Row="1">
             <Button.Resources>
                 <Style TargetType="{x:Type Border}">
                     <Setter Property="CornerRadius" Value="12"/>
