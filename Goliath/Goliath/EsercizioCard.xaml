@@ -14,7 +14,20 @@
                     <TextBlock Text="Nome esercizio: " FontWeight="Bold" Foreground="#FF5F5A5A"/>
                     <TextBlock x:Name="nomeEsercizioBlock" Text="H"/>
                 </StackPanel>
-                <MediaElement x:Name="videoBox" Height="150" LoadedBehavior="Manual" MediaEnded="videoBox_MediaEnded" UnloadedBehavior="Stop"/>
+                <Grid Height="186" Margin="0,0,0,5" Width="314">
+                    <Rectangle RadiusX="15" RadiusY="15">
+                        <Rectangle.Fill>
+                            <VisualBrush Stretch="UniformToFill">
+                                <VisualBrush.Visual>
+                                    <MediaElement x:Name="videoBox"
+                                  LoadedBehavior="Manual"
+                                  UnloadedBehavior="Stop"
+                                  MediaEnded="videoBox_MediaEnded"/>
+                                </VisualBrush.Visual>
+                            </VisualBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
+                </Grid>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                     <TextBlock Text="Serie: " FontWeight="Bold" Foreground="#FF5F5A5A"/>
 
