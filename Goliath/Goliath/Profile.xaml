@@ -11,69 +11,22 @@
         <TextBox x:Name="textBoxNome1" TextWrapping="Wrap" Text="" Margin="25,99,583,281"/>
         <TextBox x:Name="textBoxCognome1" HorizontalAlignment="Left" Height="55" Margin="25,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="192"/>
         <TextBox x:Name="textBoxUsername1" HorizontalAlignment="Left" Height="54" Margin="25,284,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="192"/>
-        <Label x:Name="labelProfile1" Content="PROFILE" HorizontalAlignment="Left" Height="38" Margin="273,10,0,0" VerticalAlignment="Top" Width="151" Background="#00000000" Foreground="#FFA076C8"/>
+        <Label x:Name="labelProfile1" Content="PROFILE" HorizontalAlignment="Left" Height="38" Margin="273,10,0,0" VerticalAlignment="Top" Width="151" Background="#00000000" Foreground="LightGray"/>
         <TextBox x:Name="textBoxNumeroAllenamenti1" HorizontalAlignment="Left" Height="36" Margin="273,117,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="153"/>
-        <Button x:Name="buttonCreaProfilo1" Content="Crea profilo" HorizontalAlignment="Left" Height="41" Margin="272,204,0,0" VerticalAlignment="Top" Width="114" Click="buttonCreaProfilo_Click">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF8421E0"/>
-                    <GradientStop Color="#FF727272" Offset="1"/>
-                    <GradientStop Color="#FEA36AD7" Offset="0"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Label x:Name="LabelUsername1" Content="Username" HorizontalAlignment="Left" Height="39" Margin="25,245,0,0" VerticalAlignment="Top" Width="192" Foreground="#FFA076C8"/>
-        <Label x:Name="LabelCognome1" Content="Cognome" HorizontalAlignment="Left" Height="37" Margin="25,153,0,0" VerticalAlignment="Top" Width="192" Foreground="#FFA076C8"/>
-        <Label x:Name="LabelNome1" Content="Nome" HorizontalAlignment="Left" Height="41" Margin="25,58,0,0" VerticalAlignment="Top" Width="192" Foreground="#FFA076C8" Background="#00000000"/>
-        <Label x:Name="labelNumeroAllenamenti1" Content="Numero Allenamenti" HorizontalAlignment="Left" Height="34" Margin="272,78,0,0" VerticalAlignment="Top" Width="153" Foreground="#FFA076C8"/>
-        <Button x:Name="buttonFormattaProfili1" Content="Formatta profili" HorizontalAlignment="Left" Height="41" Margin="272,250,0,0" VerticalAlignment="Top" Width="114" Click="buttonFormattaProfili_Click">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF8421E0"/>
-                    <GradientStop Color="#FF727272" Offset="1"/>
-                    <GradientStop Color="#FEA36AD7" Offset="0"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="buttonHome1" Content="Home" HorizontalAlignment="Left" Height="50" Margin="620,311,0,0" VerticalAlignment="Top" Width="102" Click="buttonHome_Click">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF8421E0"/>
-                    <GradientStop Color="#FF727272" Offset="1"/>
-                    <GradientStop Color="#FEA36AD7" Offset="0"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Label x:Name="labelPassword1" Content="Password:" HorizontalAlignment="Left" Height="34" Margin="467,77,0,0" VerticalAlignment="Top" Width="76" Foreground="#FFA076C8"/>
+        <Button x:Name="buttonCreaProfilo1" Content="Crea profilo" HorizontalAlignment="Left" Height="41" Margin="272,204,0,0" VerticalAlignment="Top" Width="114" Click="buttonCreaProfilo_Click"/>
+
+        <Label x:Name="LabelUsername1" Content="Username" HorizontalAlignment="Left" Height="34" Margin="25,250,0,0" VerticalAlignment="Top" Width="192" Foreground="LightGray" Background="{x:Null}"/>
+        <Label x:Name="LabelCognome1" Content="Cognome" HorizontalAlignment="Left" Height="50" Margin="25,140,0,0" VerticalAlignment="Top" Width="192" Foreground="LightGray" Background="{x:Null}"/>
+        <Label x:Name="LabelNome1" Content="Nome" HorizontalAlignment="Left" Height="36" Margin="25,63,0,0" VerticalAlignment="Top" Width="192" Foreground="LightGray" Background="{x:Null}"/>
+        <Label x:Name="labelNumeroAllenamenti1" Content="Numero Allenamenti" HorizontalAlignment="Left" Height="34" Margin="272,78,0,0" VerticalAlignment="Top" Width="153" Foreground="LightGray" Background="{x:Null}"/>
+        <Button x:Name="buttonFormattaProfili1" Content="Formatta profili" HorizontalAlignment="Left" Height="41" Margin="272,250,0,0" VerticalAlignment="Top" Width="114" Click="buttonFormattaProfili_Click"/>
+
+        <Button x:Name="buttonHome1" Content="Home" HorizontalAlignment="Left" Height="50" Margin="620,311,0,0" VerticalAlignment="Top" Width="102" Click="buttonHome_Click"/>
+
+
+        <Label x:Name="labelPassword1" Content="Password:" HorizontalAlignment="Left" Height="34" Margin="467,77,0,0" VerticalAlignment="Top" Width="76" Foreground="LightGray" Background="{x:Null}"/>
         <PasswordBox x:Name="passwordBoxPassword1" HorizontalAlignment="Left" Height="36" Margin="467,117,0,0" VerticalAlignment="Top" Width="153" PasswordChar="◉"/>
-        <Button x:Name="buttonAccedi" Content="Accedi" HorizontalAlignment="Left" Height="26" Margin="467,0,0,0" VerticalAlignment="Center" Width="94">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF8421E0"/>
-                    <GradientStop Color="#FF727272" Offset="1"/>
-                    <GradientStop Color="#FEA36AD7" Offset="0"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+        <Button x:Name="buttonAccedi" Content="Accedi" HorizontalAlignment="Left" Height="26" Margin="467,0,0,0" VerticalAlignment="Center" Width="94"/>
+
     </Grid>
 </Window>

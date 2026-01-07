@@ -8,21 +8,9 @@
         mc:Ignorable="d"
         Title="Routines" Height="450" Width="800">
     <Grid Background="#FF393939">
-        <Button x:Name="ButtonAggiungiRoutine" Content="AGGIUNGI ROUTINE" HorizontalAlignment="Left" Margin="56,80,0,0" VerticalAlignment="Top" Height="83" Width="140" Click="ButtonAggiungiRoutine_Click">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF8421E0"/>
-                    <GradientStop Color="#FF727272" Offset="1"/>
-                    <GradientStop Color="#FEA36AD7" Offset="0"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <ScrollViewer Margin="264,24,122,21" RenderTransformOrigin="0.5,0.5">
+        <Button x:Name="ButtonAggiungiRoutine" Content="Aggiungi routine" HorizontalAlignment="Left" Margin="35,111,0,0" VerticalAlignment="Top" Height="83" Width="140" Click="ButtonAggiungiRoutine_Click"/>
+
+        <ScrollViewer Margin="191,24,208,21" RenderTransformOrigin="0.5,0.5">
             <ScrollViewer.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -31,7 +19,7 @@
                     <TranslateTransform/>
                 </TransformGroup>
             </ScrollViewer.RenderTransform>
-            <ListView x:Name="routinesList" Height="387" Width="400" d:ItemsSource="{d:SampleData ItemCount=5}" Foreground="#FF76717A" Background="#FF393939" BorderBrush="#FF393939" RenderTransformOrigin="0.516,0.497">
+            <ListView x:Name="routinesList" Height="387" Width="422" d:ItemsSource="{d:SampleData ItemCount=5}" Foreground="#FF76717A" Background="#FF393939" BorderBrush="#FF393939" RenderTransformOrigin="0.516,0.497">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn/>
@@ -42,35 +30,9 @@
 
 
 
-        <Button x:Name="buttonHome" Content="Home" HorizontalAlignment="Left" Height="47" Margin="56,346,0,0" VerticalAlignment="Top" Width="125" Click="buttonHome_Click">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF8421E0"/>
-                    <GradientStop Color="#FF727272" Offset="1"/>
-                    <GradientStop Color="#FEA36AD7" Offset="0"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+        <Button x:Name="buttonHome" Content="Home" HorizontalAlignment="Left" Height="47" Margin="623,342,0,0" VerticalAlignment="Top" Width="125" Click="buttonHome_Click"/>
 
+        <Button x:Name="buttonRimuoviRoutine1" Content="Rimuovi routine" HorizontalAlignment="Left" Height="85" Margin="35,217,0,0" VerticalAlignment="Top" Width="140" Click="buttonRimuoviRoutine1_Click"/>
 
-        <Button x:Name="buttonRimuoviRoutine1" Content="rimuovi routine" HorizontalAlignment="Left" Height="85" Margin="56,196,0,0" VerticalAlignment="Top" Width="140" Click="buttonRimuoviRoutine1_Click">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FF8421E0"/>
-                    <GradientStop Color="#FF727272" Offset="1"/>
-                    <GradientStop Color="#FEA36AD7" Offset="0"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
     </Grid>
 </Window>
