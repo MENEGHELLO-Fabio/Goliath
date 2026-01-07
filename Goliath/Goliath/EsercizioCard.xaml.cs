@@ -1,17 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Goliath
 {
@@ -20,7 +10,7 @@ namespace Goliath
     /// </summary>
     public partial class EsercizioCard : UserControl
     {
-        //evento personalizzato per segnalare la selezione di una serie
+        // evento personalizzato per segnalare la selezione di una serie
         public event Action<EsercizioCard, serie> SerieSelezionata;
 
         List<serie> serieDiEsercizio = new List<serie>();
@@ -34,25 +24,24 @@ namespace Goliath
             }
         }
 
+        // Evento chiamato quando il video della card finisce: riavvia in loop
         private void videoBox_MediaEnded(object sender, RoutedEventArgs e)
         {
             videoBox.Position = TimeSpan.Zero;
             videoBox.Play();
         }
 
+        // Gestore selezione serie: aggiorna dettagli e segnala la selezione esternamente
         private void SerieList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            
             var selectedSerie = SerieList.SelectedItem as serie;
             if (selectedSerie != null)
             {
                 repBlock.Text = selectedSerie.Ripetizioni.ToString();
                 caricoBlock.Text = selectedSerie.Carico.ToString();
-                //avviso la finestra principale della selezione
+                // avviso la finestra principale della selezione
                 SerieSelezionata?.Invoke(this, selectedSerie);
             }
         }
-
     }
-
 }

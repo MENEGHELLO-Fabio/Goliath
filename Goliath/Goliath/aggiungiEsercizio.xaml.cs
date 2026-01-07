@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using static System.Net.WebRequestMethods;
 
 namespace Goliath
 {
@@ -13,7 +12,7 @@ namespace Goliath
     /// </summary>
     public partial class aggiungiEsercizio : Window
     {
-        videoCollection collezioneVideo= new videoCollection();
+        videoCollection collezioneVideo = new videoCollection();
         eserciziCollection collezioneEsercizi;
 
         public esercizio esercizioSelezionato = null;
@@ -21,7 +20,7 @@ namespace Goliath
         public aggiungiEsercizio()
         {
             InitializeComponent();
-            collezioneVideo.LoadVideos(); 
+            collezioneVideo.LoadVideos();
             collezioneEsercizi = new eserciziCollection(collezioneVideo);
 
             collezioneEsercizi.caricaDaCsv();
@@ -31,39 +30,35 @@ namespace Goliath
                 collezioneEsercizi.compilaListaEsercizi();
             }
 
-            VideosListBox.DisplayMemberPath = "NomeEsercizio"; 
+            VideosListBox.DisplayMemberPath = "NomeEsercizio";
             VideosListBox.ItemsSource = collezioneEsercizi.getEsercizi();
         }
 
-
-      
-
+        // Gestore della selezione nella ListBox: avvia il video dell'esercizio selezionato e memorizza la selezione
         private void VideosListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-           
-            if (VideosListBox.SelectedItem == null)
-            {
-                return;
-            }
+            if (VideosListBox.SelectedItem == null) return;
 
-            esercizio ex = (esercizio)VideosListBox.SelectedItem; 
+            esercizio ex = (esercizio)VideosListBox.SelectedItem;
             string fullPath = ex.VideoPath;
 
             videoPlayer.Source = new Uri(fullPath);
             videoPlayer.Play();
 
-            esercizioSelezionato= ex;
-
+            esercizioSelezionato = ex;
         }
+
+        // Pulsante ritorno: chiude la finestra restituendo DialogResult = true
         private void buttonReturn_Click_1(object sender, RoutedEventArgs e)
         {
-            this.DialogResult = true;//serve per capire se finestra si è chiusa correttamente
+            this.DialogResult = true; // serve per capire se finestra si è chiusa correttamente
             this.Close();
         }
 
+        // Evento chiamato quando il media finisce: riavvia la riproduzione (loop)
         private void videoPlayer_MediaEnded(object sender, RoutedEventArgs e)
         {
-            videoPlayer.Position = TimeSpan.Zero; 
+            videoPlayer.Position = TimeSpan.Zero;
             videoPlayer.Play();
         }
     }

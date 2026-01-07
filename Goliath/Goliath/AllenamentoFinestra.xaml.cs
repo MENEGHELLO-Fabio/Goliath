@@ -2,16 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Goliath
 {
@@ -24,22 +16,13 @@ namespace Goliath
         private routine selectedRoutine = null;
         public routine allenamentoDaTornare;
 
-        //variabili per tenere traccia della card e della serie attiva
+        // variabili per tenere traccia della card e della serie attiva
         private EsercizioCard cardAttiva;
         private serie serieAttiva;
-        //tempo
-        private System.Windows.Threading.DispatcherTimer timer;
-        private TimeSpan tempoTrascorso;
 
         public AllenamentoFinestra()
         {
             InitializeComponent();
-            //tempo
-            timer = new System.Windows.Threading.DispatcherTimer();
-            timer.Interval = TimeSpan.FromSeconds(1);
-            timer.Tick += Timer_Tick;
-            tempoTrascorso = TimeSpan.Zero;
-
             selectedRoutine = null;
 
             grid2.Visibility = Visibility.Visible;
@@ -47,13 +30,12 @@ namespace Goliath
             grid4.Visibility = Visibility.Collapsed;
 
             caricaRoutines();
-
         }
 
+        // Legge routines da routines.csv (filtra per profilo corrente se presente)
         private void caricaRoutines()
         {
             const string filePath = "routines.csv";
-
 
             loadedRoutines.Clear();
 
@@ -76,7 +58,7 @@ namespace Goliath
                     var line = (raw ?? string.Empty).Trim();
                     if (string.IsNullOrWhiteSpace(line)) continue;
 
-                    // Trova la riga che contiene l'header che caratterizza l'inizio della routine
+                    // Trova header ROUTINE;[profile];Name
                     if (line.StartsWith("ROUTINE;", StringComparison.OrdinalIgnoreCase))
                     {
                         var parts = line.Split(';');
@@ -104,7 +86,6 @@ namespace Goliath
                         var nomeLegacy = parts.Length > 1 ? parts[1].Trim() : "UnnamedRoutine";
                         if (!string.IsNullOrEmpty(currentProfile))
                         {
-                            // If a profile is loaded, skip legacy routines (they are unassociated)
                             currentRoutine = null;
                             currentExercise = null;
                             continue;
@@ -115,7 +96,7 @@ namespace Goliath
                         currentExercise = null;
                         continue;
                     }
-                    // Trova una riga contenente le informazioni dell'esercizio
+                    // Nuovo esercizio (EX;)
                     if (line.StartsWith("EX;", StringComparison.OrdinalIgnoreCase))
                     {
                         if (currentRoutine == null) continue;
@@ -158,6 +139,7 @@ namespace Goliath
             }
         }
 
+        // Aggiorna la ListView mostrando i nomi delle routine
         private void RefreshRoutinesListView()
         {
             routinesList.DisplayMemberPath = "NomeRoutine";
@@ -165,15 +147,10 @@ namespace Goliath
             routinesList.ItemsSource = loadedRoutines;
         }
 
+        // Avvia l'allenamento selezionato e mostra la UI di esecuzione
         private void buttonStart_Click(object sender, RoutedEventArgs e)
         {
-            if (routinesList.SelectedItem == null)
-            {
-                return;
-            }
-            tempoTrascorso = TimeSpan.Zero;
-            tempo.Text = "00:00";
-            timer.Start();
+            if (routinesList.SelectedItem == null) return;
 
             selectedRoutine = (routine)routinesList.SelectedItem;
 
@@ -184,6 +161,7 @@ namespace Goliath
             visualizzaAllenamento();
         }
 
+        // Costruisce le card dell'allenamento per ogni esercizio della routine selezionata
         private void visualizzaAllenamento()
         {
             panel.Children.Clear();
@@ -194,13 +172,11 @@ namespace Goliath
             {
                 var esercizio = esercizi[i];
 
-                var card = new EsercizioCard(esercizio.getSerie()); 
+                var card = new EsercizioCard(esercizio.getSerie());
                 card.SerieSelezionata += Card_SerieSelezionata;
-
 
                 card.nomeEsercizioBlock.Text = esercizio.NomeEsercizio;
 
-                
                 // ripetizioni della prima serie (se esiste)
                 if (esercizio.getSerie().Count > 0)
                     card.repBlock.Text = esercizio.getSerie()[0].Ripetizioni.ToString();
@@ -215,14 +191,12 @@ namespace Goliath
             }
         }
 
+        // Salva l'allenamento corrente su allenamenti.csv e ritorna alla Main
         private void buttonIndietro_Click(object sender, RoutedEventArgs e)
         {
-
             if (selectedRoutine != null)
             {
-                timer.Stop();
-
-                //salva allenamento su csv
+                // salva allenamento su csv
                 const string filePath = "allenamenti.csv";
 
                 if (!File.Exists(filePath))
@@ -246,38 +220,25 @@ namespace Goliath
                 }
             }
 
-
-
-            //ritorno a main window
-
+            // ritorno a main window
             MainWindow main = new MainWindow();
             main.Show();
             if (selectedRoutine != null)
             {
-               allenamentoDaTornare = selectedRoutine;
+                allenamentoDaTornare = selectedRoutine;
                 this.DialogResult = true;
             }
-            
+
             this.Close();
-
-
         }
 
+        // Imposta i valori della serie selezionata (update UI e modello)
         private void buttonImposta_Click(object sender, RoutedEventArgs e)
         {
+            if (serieAttiva == null) return;
 
-            if (serieAttiva == null) { 
-                     return;
-            }
-
-            if (!int.TryParse(boxRepFatte.Text, out int nuoveRep))
-            {
-                return;
-            }
-            if (!int.TryParse(boxCaricoUsato.Text, out int nuovoCarico))
-            {
-                return;
-            }
+            if (!int.TryParse(boxRepFatte.Text, out int nuoveRep)) return;
+            if (!int.TryParse(boxCaricoUsato.Text, out int nuovoCarico)) return;
 
             // aggiorno i valori della serie
             serieAttiva.Ripetizioni = nuoveRep;
@@ -290,22 +251,11 @@ namespace Goliath
             cardAttiva.SerieList.Items.Refresh();
         }
 
-
-        //metodo perfar capire a finestra card e serie attiva
+        // Metodo per comunicare dalla card quale serie è stata selezionata
         private void Card_SerieSelezionata(EsercizioCard card, serie serie)
         {
             cardAttiva = card;
             serieAttiva = serie;
-
-         
         }
-
-        private void Timer_Tick(object sender, EventArgs e)
-        {
-            tempoTrascorso = tempoTrascorso.Add(TimeSpan.FromSeconds(1));
-            tempo.Text = tempoTrascorso.ToString(@"mm\:ss");
-        }
-
     }
-
 }

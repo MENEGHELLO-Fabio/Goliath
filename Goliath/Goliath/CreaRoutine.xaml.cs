@@ -1,10 +1,7 @@
-﻿using System.Windows;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -15,7 +12,6 @@ namespace Goliath
     /// </summary>
     public partial class CreaRoutine : Window
     {
-
         // Oggetto routine corrente su cui si lavora
         public routine currentRoutine { get; }
 
@@ -70,13 +66,10 @@ namespace Goliath
             if (exercisesWindow.ShowDialog() == true)
             {
                 esercizio ex = exercisesWindow.esercizioSelezionato;
-
                 nomeEsercizioBlock.Text = ex.NomeEsercizio;
-
                 // Salvo il VideoPath in un campo nascosto
                 videoPathSelezionato = ex.VideoPath;
             }
-
         }
 
         // Salva la routine corrente su file CSV (formato: header ROUTINE;[profile];NomeRoutine, poi EX/SERIE)
@@ -84,7 +77,6 @@ namespace Goliath
         {
             // file destinazione
             const string filePath = "routines.csv";
-
 
             if (string.IsNullOrWhiteSpace(currentRoutine.NomeRoutine))
             {
@@ -108,7 +100,6 @@ namespace Goliath
             // per ogni esercizio aggiungi una riga EX;Nome;VideoPath
             foreach (var ex in currentRoutine.GetEsercizi())
             {
-
                 string safeName = (ex.getNomeEsercizio() ?? "").Replace(";", " ");
                 string safeVideo = "";
                 // se la classe esercizio espone VideoPath, prova a leggerlo (se non presente rimane vuoto)

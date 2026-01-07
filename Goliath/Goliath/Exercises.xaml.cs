@@ -7,6 +7,9 @@ using System.Collections.Generic;
 
 namespace Goliath
 {
+    /// <summary>
+    /// Logica di interazione per Exercises.xaml
+    /// </summary>
     public partial class Exercises : Window
     {
         videoCollection collezioneVideo = new videoCollection();
@@ -29,6 +32,7 @@ namespace Goliath
             VideosListBox.ItemsSource = collezioneEsercizi.getEsercizi();
         }
 
+        // Gestore della selezione: avvia il video associato all'esercizio selezionato
         private void VideosListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (VideosListBox.SelectedItem == null)
@@ -41,9 +45,9 @@ namespace Goliath
 
             videoPlayer.Source = new Uri(fullPath);
             videoPlayer.Play();
-
         }
 
+        // Pulsante Home: torna alla MainWindow esistente o ne crea una nuova
         private void buttonHome_Click(object sender, RoutedEventArgs e)
         {
             var main = Application.Current.Windows.OfType<MainWindow>().FirstOrDefault();
@@ -62,10 +66,11 @@ namespace Goliath
             this.Close();
         }
 
+        // Evento MediaEnded: riavvia automaticamente il video (loop)
         private void videoPlayer_MediaEnded(object sender, RoutedEventArgs e)
         {
             videoPlayer.Position = TimeSpan.Zero; 
             videoPlayer.Play();
         }
-    }                                                           
+    }
 }
