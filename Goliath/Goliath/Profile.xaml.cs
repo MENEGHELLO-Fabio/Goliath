@@ -16,9 +16,9 @@ namespace Goliath
         {
             InitializeComponent();
          
-            var accediBtn = this.FindName("buttonAccedi") as Button;
-            if (accediBtn != null)
-                accediBtn.Click += buttonAccedi_Click;
+            //var accediBtn = this.FindName("buttonAccedi") as Button;
+            //if (accediBtn != null)
+            //    accediBtn.Click += buttonAccedi_Click;
 
             Carica();
         }
@@ -240,7 +240,7 @@ namespace Goliath
                 }
                 else
                 {
-                    MessageBox.Show("Errore nel formato del numero degli allenamenti nell'ultima riga.");
+                   // MessageBox.Show("Errore nel formato del numero degli allenamenti nell'ultima riga.");
                     SetTextBoxText("textBoxNumeroAllenamenti", string.Empty);
                 }
 
