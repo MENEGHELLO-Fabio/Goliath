@@ -168,6 +168,8 @@ namespace Goliath
             }
             serie nuovaSerie = new serie(int.Parse(ripetizioniBox.Text), int.Parse(caricoBox.Text));
             SerieList.Items.Add(nuovaSerie);
+            ripetizioniBox.Text= "";    
+            caricoBox.Text= "";
         }
     }
 }
