@@ -26,6 +26,7 @@
             <Label Content="CARICO USATO" HorizontalAlignment="Left" Margin="10,78,0,0" VerticalAlignment="Top" Width="120" Foreground="LightGray"/>
             <TextBox x:Name="boxCaricoUsato" HorizontalAlignment="Left" Margin="10,0,0,0" TextWrapping="Wrap" VerticalAlignment="Center" Width="99"/>
             <Button x:Name="buttonImposta" Content="imposta" HorizontalAlignment="Left" Margin="10,164,0,0" VerticalAlignment="Top" Height="25" Width="99" Click="buttonImposta_Click"/>
+            <TextBlock x:Name="tempo" HorizontalAlignment="Left" Margin="10,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="24" Width="99" Background="#FFD1CDCD"/>
         </Grid>
         <Grid x:Name="grid3" Background="#FFC8C8C8" Margin="0,0,146,0">
             <ScrollViewer x:Name="finestraScrolla">

@@ -27,10 +27,19 @@ namespace Goliath
         //variabili per tenere traccia della card e della serie attiva
         private EsercizioCard cardAttiva;
         private serie serieAttiva;
+        //tempo
+        private System.Windows.Threading.DispatcherTimer timer;
+        private TimeSpan tempoTrascorso;
 
         public AllenamentoFinestra()
         {
             InitializeComponent();
+            //tempo
+            timer = new System.Windows.Threading.DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
+            tempoTrascorso = TimeSpan.Zero;
+
             selectedRoutine = null;
 
             grid2.Visibility = Visibility.Visible;
@@ -162,6 +171,9 @@ namespace Goliath
             {
                 return;
             }
+            tempoTrascorso = TimeSpan.Zero;
+            tempo.Text = "00:00";
+            timer.Start();
 
             selectedRoutine = (routine)routinesList.SelectedItem;
 
@@ -208,6 +220,8 @@ namespace Goliath
 
             if (selectedRoutine != null)
             {
+                timer.Stop();
+
                 //salva allenamento su csv
                 const string filePath = "allenamenti.csv";
 
@@ -286,6 +300,11 @@ namespace Goliath
          
         }
 
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            tempoTrascorso = tempoTrascorso.Add(TimeSpan.FromSeconds(1));
+            tempo.Text = tempoTrascorso.ToString(@"mm\:ss");
+        }
 
     }
 

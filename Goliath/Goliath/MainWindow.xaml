@@ -37,7 +37,7 @@
         <Label x:Name="LabelGoliath" Content="GOLIATH" Margin="0,0,592,341" VerticalAlignment="Bottom" Width="177" FontFamily="Showcard Gothic" FontSize="36" Background="#FF393939" Foreground="#FF858585" HorizontalAlignment="Right" Height="57" ClipToBounds="True" Grid.Row="1">
         </Label>
         <ScrollViewer x:Name="barraScorrimento" Margin="239,0,0,0" Background="White" BorderBrush="White" Foreground="Black" Grid.RowSpan="2">
-            <StackPanel x:Name="panel" Width="548" Background="#FF393939"/>
+            <StackPanel x:Name="panel" Background="#FF393939" HorizontalAlignment="Stretch"/>
         </ScrollViewer>
         <Button x:Name="tempButtonAllenamento" FontFamily="Arial Nova" Content="AVVIA ALLENAMENTO" HorizontalAlignment="Left" Margin="39,85,0,0" VerticalAlignment="Top" Height="42" Width="161" Click="tempButtonAllenamento_Click" Background="Silver" Grid.Row="1">
             <Button.Resources>
