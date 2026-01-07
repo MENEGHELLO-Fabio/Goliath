@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Windows;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -15,11 +16,12 @@ namespace Goliath
     public partial class CreaRoutine : Window
     {
 
-        //private readonly routine currentRoutine;
+        // Oggetto routine corrente su cui si lavora
         public routine currentRoutine { get; }
 
-        public esercizio esercizioSelezionato=null;
+        public esercizio esercizioSelezionato = null;
 
+        // Percorso video selezionato (nascosto nella UI)
         private string videoPathSelezionato = "";
 
         public CreaRoutine()
@@ -29,18 +31,18 @@ namespace Goliath
             // opzionale: mostra la lista degli esercizi correnti della routine nella UI (se presente)
         }
 
-        
-
+        // Chiude la finestra di creazione routine
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
-          
         }
 
+        // Aggiunge un esercizio creato manualmente alla routine corrente (recupera le serie dalla UI)
         private void ButtonAggiungiEsercizio_Click(object sender, RoutedEventArgs e)
         {
-            if (nomeEsercizioBlock.Text=="" || SerieList==null) { 
-                MessageBox.Show("Compila tutti i campi prima di aggiungere l'esercizio.", "Errore", MessageBoxButton.OK, MessageBoxImage.Error); return; 
+            if (nomeEsercizioBlock.Text == "" || SerieList == null)
+            {
+                MessageBox.Show("Compila tutti i campi prima di aggiungere l'esercizio.", "Errore", MessageBoxButton.OK, MessageBoxImage.Error); return;
             }
             List<serie> serieEsercizio = new List<serie>();
             foreach (var item in SerieList.Items)
@@ -52,8 +54,8 @@ namespace Goliath
             }
             esercizio nuovoEsercizio = new esercizio(nomeEsercizioBlock.Text, serieEsercizio);
             nuovoEsercizio.VideoPath = videoPathSelezionato;
-            
-            nomeEsercizioBlock.Text="";
+
+            nomeEsercizioBlock.Text = "";
             SerieList.Items.Clear();
             ripetizioniBox.Text = "";
             caricoBox.Text = "";
@@ -61,6 +63,7 @@ namespace Goliath
             eserciziPresenti.Items.Add(nuovoEsercizio.ToString());
         }
 
+        // Apre la finestra di ricerca esercizi e popola i campi con l'esercizio selezionato
         private void buttonCercaEsercizio_Click(object sender, RoutedEventArgs e)
         {
             aggiungiEsercizio exercisesWindow = new aggiungiEsercizio();
@@ -76,12 +79,13 @@ namespace Goliath
 
         }
 
+        // Salva la routine corrente su file CSV (formato: header ROUTINE;[profile];NomeRoutine, poi EX/SERIE)
         public void salvaRoutine()
         {
             // file destinazione
             const string filePath = "routines.csv";
 
-            
+
             if (string.IsNullOrWhiteSpace(currentRoutine.NomeRoutine))
             {
                 currentRoutine.NomeRoutine = "UnnamedRoutine";
@@ -104,7 +108,7 @@ namespace Goliath
             // per ogni esercizio aggiungi una riga EX;Nome;VideoPath
             foreach (var ex in currentRoutine.GetEsercizi())
             {
-               
+
                 string safeName = (ex.getNomeEsercizio() ?? "").Replace(";", " ");
                 string safeVideo = "";
                 // se la classe esercizio espone VideoPath, prova a leggerlo (se non presente rimane vuoto)
@@ -138,6 +142,7 @@ namespace Goliath
             File.AppendAllLines(filePath, lines);
         }
 
+        // Handler per il pulsante Salva: imposta il nome e salva la routine su file
         private void buttonSalvaRoutine_Click(object sender, RoutedEventArgs e)
         {
             if (string.IsNullOrWhiteSpace(nomeRoutineBox.Text))
@@ -154,6 +159,7 @@ namespace Goliath
             this.Close();
         }
 
+        // Aggiunge una nuova serie alla lista di serie dell'esercizio in creazione
         private void ButtonAggiungiSerie_Click(object sender, RoutedEventArgs e)
         {
             if (ripetizioniBox.Text == "" || caricoBox.Text == "")

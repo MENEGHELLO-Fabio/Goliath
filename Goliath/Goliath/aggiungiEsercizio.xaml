@@ -31,18 +31,7 @@
                       MediaEnded="videoPlayer_MediaEnded"
                       Grid.Row="1"/>
 
-        <Button x:Name="buttonReturn" Margin="384,310,50,30" Grid.Row="1" Grid.Column="1" Content="Salva" FontFamily="Verdana" Click="buttonReturn_Click_1">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FEA36AD7"/>
-                    <GradientStop Color="#FF9A9A9A" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+        <Button x:Name="buttonReturn" Margin="384,310,50,30" Grid.Row="1" Grid.Column="1" Content="Salva" FontFamily="Verdana" Click="buttonReturn_Click_1"/>
+
     </Grid>
 </Window>

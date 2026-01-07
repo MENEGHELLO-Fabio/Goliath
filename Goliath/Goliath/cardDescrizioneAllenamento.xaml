@@ -22,7 +22,7 @@
                 <Label Content="ALLENAMENTO:"
                FontSize="26"
                FontWeight="Bold"
-               Foreground="Black"/>
+               Foreground="#FF636363" Background="White"/>
 
                 <TextBlock x:Name="dataAllenamento"
                    FontSize="24"

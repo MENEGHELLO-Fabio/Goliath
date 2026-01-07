@@ -22,88 +22,35 @@
                 </TransformGroup>
             </ListBox.RenderTransform>
         </ListBox>
-        <Label Content="Esercizi Presenti:" HorizontalAlignment="Left" Margin="30,40,0,0" VerticalAlignment="Top" Foreground="#FFA076C8"/>
-        <Label Content="Numero serie:" HorizontalAlignment="Left" Margin="17,74,0,0" VerticalAlignment="Top" Width="101" Background="#00000000" Foreground="#FFA076C8" Grid.Column="1"/>
-        <Label Content="Numero ripetizioni:" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top" Width="115" Background="#00000000" Foreground="#FFA076C8" Grid.Column="1"/>
+        <Label Content="Esercizi Presenti:" HorizontalAlignment="Left" Margin="30,40,0,0" VerticalAlignment="Top" Foreground="#FFC1C1C1"/>
+        <Label Content="Numero serie:" HorizontalAlignment="Left" Margin="17,74,0,0" VerticalAlignment="Top" Width="101" Background="#00000000" Grid.Column="1" Foreground="#FFC1C1C1"/>
+        <Label Content="Numero ripetizioni:" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top" Width="115" Background="#00000000" Grid.Column="1" Foreground="#FFC1C1C1"/>
         <TextBox x:Name="ripetizioniBox" HorizontalAlignment="Left" Margin="133,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Height="20" Grid.Column="1" Background="#FFA4A4A4"/>
-        <Label Content="Carico:" HorizontalAlignment="Left" Margin="47,217,0,0" VerticalAlignment="Top" Width="59" Background="#00000000" Foreground="#FFA076C8" Grid.Column="1"/>
+        <Label Content="Carico:" HorizontalAlignment="Left" Margin="47,217,0,0" VerticalAlignment="Top" Width="59" Background="#00000000" Grid.Column="1" Foreground="#FFC1C1C1"/>
 
         <TextBox x:Name="caricoBox" HorizontalAlignment="Left" Margin="133,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Height="21" Grid.Column="1" Background="#FFA4A4A4"/>
 
 
-        <Button x:Name="buttonIndietro" Content="Indietro" HorizontalAlignment="Left" Height="41" Margin="463,365,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" Grid.Column="1">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FEA36AD7"/>
-                    <GradientStop Color="#FF9A9A9A" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+        <Button x:Name="buttonIndietro" Content="Indietro" HorizontalAlignment="Left" Height="41" Margin="463,365,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" Grid.Column="1"/>
 
-        <Label Content="Nome esercizio:" HorizontalAlignment="Left" Margin="27,262,0,0" VerticalAlignment="Top" Background="#00000000" Foreground="#FFA076C8" Grid.Column="1"/>
+
+        <Label Content="Nome esercizio:" HorizontalAlignment="Left" Margin="27,262,0,0" VerticalAlignment="Top" Background="#00000000" Grid.Column="1" Foreground="#FFC1C1C1"/>
         <TextBlock x:Name="nomeEsercizioBlock" HorizontalAlignment="Left" Margin="133,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="130" Background="#FFA6A6A6" Grid.Column="1"/>
 
-        <Button x:Name="ButtonAggiungiEsercizio" Content="Aggiungi esercizio" HorizontalAlignment="Left" Height="42" Margin="297,230,0,0" VerticalAlignment="Top" Width="128" Click="ButtonAggiungiEsercizio_Click" Grid.Column="1">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FEA36AD7"/>
-                    <GradientStop Color="#FF9A9A9A" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+        <Button x:Name="ButtonAggiungiEsercizio" Content="Aggiungi esercizio" HorizontalAlignment="Left" Height="42" Margin="297,230,0,0" VerticalAlignment="Top" Width="128" Click="ButtonAggiungiEsercizio_Click" Grid.Column="1"/>
 
 
-        <Label Content="Nome routine:" HorizontalAlignment="Left" Margin="401,40,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Foreground="#FFA076C8"/>
+
+        <Label Content="Nome routine:" HorizontalAlignment="Left" Margin="401,40,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Foreground="#FFC1C1C1"/>
         <TextBox x:Name="nomeRoutineBox" HorizontalAlignment="Left" Margin="401,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Grid.Column="1" Height="21" Background="#FFA4A4A4"/>
-        <Button x:Name="buttonCercaEsercizio" Content="Cerca esercizio" HorizontalAlignment="Left" Margin="34,334,0,0" VerticalAlignment="Top" Height="42" Width="112" Click="buttonCercaEsercizio_Click">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FEA36AD7"/>
-                    <GradientStop Color="#FF9A9A9A" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="buttonSalvaRoutine" Content="Salva routine" HorizontalAlignment="Left" Height="41" Margin="449,112,0,0" VerticalAlignment="Top" Width="90" Click="buttonSalvaRoutine_Click" Grid.Column="1">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FEA36AD7"/>
-                    <GradientStop Color="#FF9A9A9A" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
-        <Button x:Name="ButtonAggiungiSerie" Content="AggiungiSerie" HorizontalAlignment="Left" Height="42" Margin="130,308,0,0" VerticalAlignment="Top" Width="128" Grid.Column="1" Click="ButtonAggiungiSerie_Click">
-            <Button.Resources>
-                <Style TargetType="{x:Type Border}">
-                    <Setter Property="CornerRadius" Value="12"/>
-                </Style>
-            </Button.Resources>
-            <Button.Background>
-                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                    <GradientStop Color="#FEA36AD7"/>
-                    <GradientStop Color="#FF9A9A9A" Offset="1"/>
-                </LinearGradientBrush>
-            </Button.Background>
-        </Button>
+        <Button x:Name="buttonCercaEsercizio" Content="Cerca esercizio" HorizontalAlignment="Left" Margin="34,334,0,0" VerticalAlignment="Top" Height="42" Width="112" Click="buttonCercaEsercizio_Click"/>
+
+
+        <Button x:Name="buttonSalvaRoutine" Content="Salva routine" HorizontalAlignment="Left" Height="41" Margin="449,112,0,0" VerticalAlignment="Top" Width="90" Click="buttonSalvaRoutine_Click" Grid.Column="1"/>
+
+        <Button x:Name="ButtonAggiungiSerie" Content="AggiungiSerie" HorizontalAlignment="Left" Height="42" Margin="130,308,0,0" VerticalAlignment="Top" Width="128" Grid.Column="1" Click="ButtonAggiungiSerie_Click"/>
+
+
         <ListBox x:Name="SerieList" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="118,54,296,264"/>
     </Grid>
 </Window>

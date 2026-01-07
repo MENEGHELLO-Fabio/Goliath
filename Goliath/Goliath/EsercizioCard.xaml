@@ -8,24 +8,24 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="10" Padding="10" Background="White">
-            <StackPanel Orientation="Vertical" Background="White">
+        <Border BorderBrush="Black" BorderThickness="1" CornerRadius="5" Margin="10" Padding="10" Background="#FF2A294C">
+            <StackPanel Orientation="Vertical" Background="#FFBFBFBF">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                    <TextBlock Text="Nome esercizio: " FontWeight="Bold"/>
+                    <TextBlock Text="Nome esercizio: " FontWeight="Bold" Foreground="#FF5F5A5A"/>
                     <TextBlock x:Name="nomeEsercizioBlock" Text="H"/>
                 </StackPanel>
                 <MediaElement x:Name="videoBox" Height="150" LoadedBehavior="Manual" MediaEnded="videoBox_MediaEnded" UnloadedBehavior="Stop"/>
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
-                    <TextBlock Text="Serie: " FontWeight="Bold"/>
-                 
+                    <TextBlock Text="Serie: " FontWeight="Bold" Foreground="#FF5F5A5A"/>
+
                 </StackPanel>
-                <ListBox x:Name="SerieList" Height="100" SelectionChanged="SerieList_SelectionChanged"/>
+                <ListBox x:Name="SerieList" Height="100" SelectionChanged="SerieList_SelectionChanged" Background="#FFC7C7C7"/>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Ripetizioni: " FontWeight="Bold"/>
+                    <TextBlock Text="Ripetizioni: " FontWeight="Bold" Foreground="#FF5F5A5A"/>
                     <TextBlock x:Name="repBlock"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal">
-                    <TextBlock Text="Carico: " FontWeight="Bold"/>
+                    <TextBlock Text="Carico: " FontWeight="Bold" Foreground="#FFF37D7D"/>
                     <TextBlock x:Name="caricoBlock"/>
                 </StackPanel>
 
