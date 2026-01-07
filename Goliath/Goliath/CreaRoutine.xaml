@@ -24,24 +24,24 @@
         </ListBox>
         <Label Content="Esercizi Presenti:" HorizontalAlignment="Left" Margin="30,40,0,0" VerticalAlignment="Top" Foreground="#FFC1C1C1"/>
         <Label Content="Numero serie:" HorizontalAlignment="Left" Margin="17,74,0,0" VerticalAlignment="Top" Width="101" Background="#00000000" Grid.Column="1" Foreground="#FFC1C1C1"/>
-        <Label Content="Numero ripetizioni:" HorizontalAlignment="Left" Margin="10,186,0,0" VerticalAlignment="Top" Width="115" Background="#00000000" Grid.Column="1" Foreground="#FFC1C1C1"/>
+        <Label Content="Ripetizioni:" HorizontalAlignment="Left" Margin="47,177,0,0" VerticalAlignment="Top" Width="78" Background="#00000000" Grid.Column="1" Foreground="#FFC1C1C1"/>
         <TextBox x:Name="ripetizioniBox" HorizontalAlignment="Left" Margin="133,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Height="20" Grid.Column="1" Background="#FFA4A4A4"/>
-        <Label Content="Carico:" HorizontalAlignment="Left" Margin="47,217,0,0" VerticalAlignment="Top" Width="59" Background="#00000000" Grid.Column="1" Foreground="#FFC1C1C1"/>
+        <Label Content="Carico:" HorizontalAlignment="Left" Margin="47,215,0,0" VerticalAlignment="Top" Width="59" Background="#00000000" Grid.Column="1" Foreground="#FFC1C1C1"/>
 
         <TextBox x:Name="caricoBox" HorizontalAlignment="Left" Margin="133,219,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="130" Height="21" Grid.Column="1" Background="#FFA4A4A4"/>
 
 
-        <Button x:Name="buttonIndietro" Content="Indietro" HorizontalAlignment="Left" Height="41" Margin="463,365,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" Grid.Column="1"/>
+        <Button x:Name="buttonIndietro" Content="Indietro" HorizontalAlignment="Left" Height="41" Margin="442,355,0,0" VerticalAlignment="Top" Width="76" Click="Button_Click" Grid.Column="1"/>
 
 
-        <Label Content="Nome esercizio:" HorizontalAlignment="Left" Margin="27,262,0,0" VerticalAlignment="Top" Background="#00000000" Grid.Column="1" Foreground="#FFC1C1C1"/>
+        <Label Content="Nome esercizio:" HorizontalAlignment="Left" Margin="17,255,0,0" VerticalAlignment="Top" Background="#00000000" Grid.Column="1" Foreground="#FFC1C1C1" Width="116"/>
         <TextBlock x:Name="nomeEsercizioBlock" HorizontalAlignment="Left" Margin="133,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="20" Width="130" Background="#FFA6A6A6" Grid.Column="1"/>
 
         <Button x:Name="ButtonAggiungiEsercizio" Content="Aggiungi esercizio" HorizontalAlignment="Left" Height="42" Margin="297,230,0,0" VerticalAlignment="Top" Width="128" Click="ButtonAggiungiEsercizio_Click" Grid.Column="1"/>
 
 
 
-        <Label Content="Nome routine:" HorizontalAlignment="Left" Margin="401,40,0,0" VerticalAlignment="Top" Width="86" Grid.Column="1" Foreground="#FFC1C1C1"/>
+        <Label Content="Nome routine:" HorizontalAlignment="Left" Margin="401,40,0,0" VerticalAlignment="Top" Width="117" Grid.Column="1" Foreground="#FFC1C1C1"/>
         <TextBox x:Name="nomeRoutineBox" HorizontalAlignment="Left" Margin="401,71,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="138" Grid.Column="1" Height="21" Background="#FFA4A4A4"/>
         <Button x:Name="buttonCercaEsercizio" Content="Cerca esercizio" HorizontalAlignment="Left" Margin="34,334,0,0" VerticalAlignment="Top" Height="42" Width="112" Click="buttonCercaEsercizio_Click"/>
 
@@ -51,6 +51,6 @@
         <Button x:Name="ButtonAggiungiSerie" Content="AggiungiSerie" HorizontalAlignment="Left" Height="42" Margin="130,308,0,0" VerticalAlignment="Top" Width="128" Grid.Column="1" Click="ButtonAggiungiSerie_Click"/>
 
 
-        <ListBox x:Name="SerieList" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="118,54,296,264"/>
+        <ListBox x:Name="SerieList" Grid.Column="1" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="118,54,296,264" Background="#FFA4A4A4"/>
     </Grid>
 </Window>
