@@ -4,12 +4,6 @@ using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Linq;
 
 namespace Goliath
@@ -28,6 +22,7 @@ namespace Goliath
             caricaRoutines();
         }
 
+        // Apre la finestra per creare una nuova routine; se OK aggiunge la routine alla lista
         private void ButtonAggiungiRoutine_Click(object sender, RoutedEventArgs e)
         {
             CreaRoutine creaRoutineWindow = new CreaRoutine();
@@ -40,6 +35,7 @@ namespace Goliath
             }
         }
 
+        // Torna alla MainWindow (mostra la main e chiude questa finestra)
         private void buttonHome_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();
@@ -47,7 +43,7 @@ namespace Goliath
             main.ShowDialog();
         }
 
-        // legge il file "routines.csv" e costruisce oggetti routine con esercizi interni
+        // Legge il file "routines.csv" e costruisce oggetti routine con esercizi interni
         private void caricaRoutines()
         {
             const string filePath = "routines.csv";
@@ -84,7 +80,7 @@ namespace Goliath
 
                             if (!string.IsNullOrEmpty(currentProfile) && !string.Equals(profileInFile, currentProfile, StringComparison.OrdinalIgnoreCase))
                             {
-                                // Skip this routine and its following blocks until next ROUTINE
+                                // Salta questo blocco di routine
                                 currentRoutine = null;
                                 currentExercise = null;
                                 continue;
@@ -96,9 +92,8 @@ namespace Goliath
                         }
                         else
                         {
-                            // backward compatibility: ROUTINE;RoutineName
+                            // compatibilità: ROUTINE;RoutineName legacy
                             var nome = parts.Length > 1 ? parts[1] : "UnnamedRoutine";
-                            // If there is a currentProfile, prefer routines that have profile header. To keep it simple, load these legacy routines only if currentProfile is empty.
                             if (!string.IsNullOrEmpty(currentProfile))
                             {
                                 currentRoutine = null; currentExercise = null; continue;
@@ -111,7 +106,7 @@ namespace Goliath
                         continue;
                     }
 
-                    // Nuovo esercizio
+                    // Nuovo esercizio (riga EX;)
                     if (line.StartsWith("EX;", StringComparison.OrdinalIgnoreCase))
                     {
                         if (currentRoutine == null) continue;
@@ -129,7 +124,7 @@ namespace Goliath
                         continue;
                     }
 
-                    // Serie dell'esercizio
+                    // Serie dell'esercizio (riga SERIE;)
                     if (line.StartsWith("SERIE;", StringComparison.OrdinalIgnoreCase))
                     {
                         if (currentExercise == null) continue;
@@ -154,8 +149,7 @@ namespace Goliath
             }
         }
 
-
-        // aggiorna la ListView mostrando i nomi delle routine
+        // Aggiorna la ListView mostrando i nomi delle routine
         private void RefreshRoutinesListView()
         {
             routinesList.DisplayMemberPath = "NomeRoutine";
@@ -163,7 +157,8 @@ namespace Goliath
             routinesList.ItemsSource = loadedRoutines;
         }
 
-        private void buttonRimuoviRoutine1_Click(object sender, RoutedEventArgs e)   // cerca nel file il titolo della routine selezionata, quando lo trova rimuove tutte le linee sottostanti fino al prossimo titolo di routine permettendo cosi di cancellarla singolarmente
+        // Cerca nel file il titolo della routine selezionata e rimuove il relativo blocco (header + EX/SERIE)
+        private void buttonRimuoviRoutine1_Click(object sender, RoutedEventArgs e)
         {
             if (routinesList.SelectedItem == null)
             {
@@ -207,14 +202,14 @@ namespace Goliath
                             // salta il blocco: dalla riga corrente fino alla riga precedente alla prossima ROUTINE
                             removedBlock = true;
 
-                            // avanza l'indice fino al prossimo header ROUTINE oppure fino alla fine delle righe scritte
+                            // avanza l'indice fino al prossimo header ROUTINE oppure fino alla fine
                             i++;
                             for (; i < allLines.Count; i++)
                             {
                                 var l = (allLines[i] ?? string.Empty).Trim();
                                 if (l.StartsWith("ROUTINE;", StringComparison.OrdinalIgnoreCase))
                                 {
-                                    // Riesaminazione della stessa riga
+                                    // riesaminare questa riga nel ciclo esterno
                                     i--;
                                     break;
                                 }
@@ -223,7 +218,7 @@ namespace Goliath
                         }
                     }
 
-                    // nel caso in cui stiamo in una riga che va mantenuta viene aggiunta alle LineeDaTenere
+                    // aggiungi la riga alle linee da tenere
                     lineeDaTenere.Add(allLines[i]);
                 }
 

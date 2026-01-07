@@ -1,16 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows;
 using System.IO;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.DirectoryServices;
 using System.Linq;
 
 namespace Goliath
@@ -31,6 +23,7 @@ namespace Goliath
             Carica();
         }
 
+        // Lettura helper per TextBox (nome base)
         private string GetTextBoxText(string nameWithoutSuffix)
         {
             var tb = this.FindName(nameWithoutSuffix) as TextBox;
@@ -40,6 +33,7 @@ namespace Goliath
             return tb?.Text ?? string.Empty;
         }
 
+        // Scrive testo in TextBox (helper)
         private void SetTextBoxText(string nameWithoutSuffix, string value)
         {
             var tb = this.FindName(nameWithoutSuffix) as TextBox;
@@ -48,6 +42,7 @@ namespace Goliath
             if (tb != null) tb.Text = value;
         }
 
+        // Recupera il PasswordBox (helper)
         private PasswordBox GetPasswordBox()
         {
             var pb = this.FindName("passwordBoxPassword") as PasswordBox;
@@ -55,6 +50,7 @@ namespace Goliath
             return this.FindName("passwordBoxPassword1") as PasswordBox;
         }
 
+        // Recupera Button per nome (helper)
         private Button GetButton(string name)
         {
             var b = this.FindName(name) as Button;
@@ -62,6 +58,7 @@ namespace Goliath
             return this.FindName(name + "1") as Button;
         }
 
+        // Controlla se esiste un profilo con lo username specificato
         private bool ProfileExistsByUsername(string username)
         {
             if (!File.Exists("profiles.csv")) return false;
@@ -82,6 +79,7 @@ namespace Goliath
             return false;
         }
 
+        // Cerca e restituisce la riga del profilo per username
         private (string raw, string[] parts)? FindProfileByUsername(string username)
         {
             if (!File.Exists("profiles.csv")) return null;
@@ -102,6 +100,7 @@ namespace Goliath
             return null;
         }
 
+        // Crea un nuovo profilo e lo scrive in profiles.csv
         private void buttonCreaProfilo_Click(object sender, RoutedEventArgs e)
         {
             string nome = GetTextBoxText("textBoxNome");
@@ -147,6 +146,7 @@ namespace Goliath
             MessageBox.Show("Profilo creato con successo!");
         }
 
+        // Gestisce l'accesso (login) verificando username e password
         private void buttonAccedi_Click(object sender, RoutedEventArgs e)
         {
             string username = GetTextBoxText("textBoxUsername");
@@ -192,6 +192,7 @@ namespace Goliath
             MessageBox.Show("Accesso effettuato.", "Info", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
+        // Carica l'ultimo profilo dal CSV e popola i campi della UI
         private void Carica()
         {
             // read last profile line and populate fields
@@ -252,6 +253,7 @@ namespace Goliath
             }
         }
 
+        // Cancella tutti i profili eliminando il file CSV
         private void buttonFormattaProfili_Click(object sender, RoutedEventArgs e)
         {
             File.Delete("profiles.csv");
@@ -259,6 +261,7 @@ namespace Goliath
             Carica();
         }
 
+        // Torna alla MainWindow
         private void buttonHome_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();
